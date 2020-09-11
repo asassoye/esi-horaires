@@ -6,10 +6,19 @@
 
 <title>Horaires ESI - pre-pre-alpha</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.css'  />
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.print.css'  media='print' />
+<link rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+  crossorigin="anonymous"/>
+<link rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+  crossorigin="anonymous"/>
+<link rel='stylesheet'
+  href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css'/>
+<link rel='stylesheet'
+href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css'
+media='print' />
 
 
 <style>
@@ -41,6 +50,11 @@ body {
     margin: 1rem 0;
 }
 
+#logo {
+  float: right;
+  margin-left: 2rem;
+}
+
 </style>
 
 </head>
@@ -49,14 +63,18 @@ body {
     </header>
 
     <main role="main" class="container">
+        <img id="logo" src="img/HE2B-Logo-ESI.png" alt="logo ESI" width="200px"/>
         <h1 class="mt-5">Horaires ESI</h1>
         <p class="text-muted">Version pré-pré-alpha</p>
         <p class="lead">
-            Horaires des étudiants et étudiantes pour le quadrimestre en cours.
+            Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
+            des <i>profs</i> pour le quadrimestre en cours.
         </p>
         <p>
             <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
-            agenda.
+            agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
+            <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format <i>ics</i>.
+            Le lien se trouve en bas de page.
         </p>
         
         <div class="alert alert-warning" role="alert">
@@ -136,11 +154,11 @@ body {
         <label>Lien vers le calendrier</label>
     <div class="input-group">
         <input class="form-control" value="" id="ical" readonly>
-        <div class="input-group-append">
-            <a class="btn btn-dark" id="download" href="plop" target="_blank">
-            <i class="fa fa-download fa-fw"></i> Télécharger
-            </a>
-        </div>
+        <button id="icalbutton" class="btn btn-dark">
+          <i class="fa fa-download fa-fw"></i>
+          Copier le lien
+        </button>
+        
         <div class="valid-feedback invisible">Le lien a été copié vers votre presse-papier avec success.</div>
     </div>
 
@@ -156,8 +174,8 @@ body {
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/lang-all.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-o0rWIsZigOfRAgBxl4puyd0t6YKzeAw9em/29Ag7lhCQfaaua/mDwnpE2PVzwqJ08N7/wqrgdjc2E0mwdSY2Tg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fr.min.js" integrity="sha512-vz2hAYjYuxwqHQAgHPZvry+DTuwemFT/aBIDmgE0cnmYENu/+t8c3u/nX2Ont6e+3m+W6FEKxN1granjgGfr1Q==" crossorigin="anonymous"></script>
 
 <script src="js/ical.js"></script>
 <script src="js/ical_events.js"></script>

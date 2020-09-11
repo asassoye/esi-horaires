@@ -20,15 +20,6 @@ function load_ics(ics){
     $('#download').attr('href', ics.url);
 }
 
-function initialTimetable() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    if (query) {
-	$("#select").val(query);
-    }
-    return $("#select").val();
-}
-
 $(document).ready(function() {
     $('#calendar').fullCalendar({
         header: {
@@ -38,7 +29,7 @@ $(document).ready(function() {
         },
         defaultView: 'agendaWeek',
         hiddenDays: [0,6],
-        locale: 'fr',
+        lang: 'fr',
         eventRender: function(event, element, view) {
             if (event.location) element.find(".fc-title").append(" - " + event.location);
         },
@@ -55,8 +46,7 @@ $(document).ready(function() {
     });
 
     // Load first timetable
-    first_value = initialTimetable();
-
+    first_value = $("#select").prop("selectedIndex", 0).val();
     load_ics({
         url: REP + first_value + '.ics',
         event_properties: {color: hash_color(first_value)}
@@ -82,22 +72,14 @@ $(document).ready(function() {
           if (success) {
             $('.valid-feedback').removeClass("invisible");    
             $('.valid-feedback').show();    
-          };          
+          };
+          
         });
      });
-
-     
-    $(function() {
-        $('#icalbutton').click(function(){
-            var copyText = document.getElementById("ical");
-            copyText.focus();
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-            var success = document.execCommand("copy");        
-            if (success) {
-                $('.valid-feedback').removeClass("invisible");    
-                $('.valid-feedback').show();    
-              };
-        });
-    });
 })
+
+
+
+
+
+
