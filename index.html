@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Horaires ESI - pre-pre-alpha</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.css'  />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.print.css'  media='print' />
+
+
+<style>
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: auto;
+  max-width: 1100px;
+  padding: 0 15px;
+}
+
+#select {
+    margin: 1rem 0;
+}
+
+</style>
+
+</head>
+<body>
+    <header>        
+    </header>
+
+    <main role="main" class="container">
+        <h1 class="mt-5">Horaires ESI</h1>
+        <p class="text-muted">Version pré-pré-alpha</p>
+        <p class="lead">
+            Horaires des étudiants et étudiantes pour le quadrimestre en cours.
+        </p>
+        <p>
+            <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
+            agenda.
+        </p>
+        
+        <div class="alert alert-warning" role="alert">
+            Pré-pré version pré-alpha d'affichage des horaires et de mise à
+            disposition des <i>fichiers ics / ical</i>.
+        </div>
+        </div>
+        <select id="select">
+            <option value='A111'>A111</option>
+            <option value='A112'>A112</option>
+            <option value='A121'>A121</option>
+            <option value='A122'>A122</option>
+            <option value='A131'>A131</option>
+            <option value='A132'>A132</option>
+            <option value='A211'>A211</option>
+            <option value='A212'>A212</option>
+            <option value='A221'>A221</option>
+            <option value='A222'>A222</option>
+            <option value='A231'>A231</option>
+            <option value='A232'>A232</option>
+            <option value='A311'>A311</option>
+            <option value='A312'>A312</option>
+            <option value='A321'>A321</option>
+            <option value='A322'>A322</option>
+            <option value='A331'>A331</option>
+            <option value='A332'>A332</option>
+            <option value='C111'>C111</option>
+            <option value='C112'>C112</option>
+            <option value='C121'>C121</option>
+            <option value='C122'>C122</option>
+            <option value='C211'>C211</option>
+            <option value='C223'>C223</option>
+            <option value='SEC4A'>SEC4A</option>
+            <option value='SEC4B'>SEC4B</option>
+            <option value='E11'>E11</option>
+            <option value='E12'>E12</option>
+            <option value='E21'>E21</option>
+            <option value='E24'>E24</option>
+            <option value='ABS'>ABS</option>
+            <option value='BEJ'>BEJ</option>
+            <option value='BFE'>BFE</option>
+            <option value='BIS'>BIS</option>
+            <option value='CLG'>CLG</option>
+            <option value='CUV'>CUV</option>
+            <option value='DBO'>DBO</option>
+            <option value='DNA'>DNA</option>
+            <option value='EGR'>EGR</option>
+            <option value='HAL'>HAL</option>
+            <option value='JDS'>JDS</option>
+            <option value='JLC'>JLC</option>
+            <option value='JSS'>JSS</option>
+            <option value='JST'>JST</option>
+            <option value='LBC'>LBC</option>
+            <option value='LMA'>LMA</option>
+            <option value='MBA'>MBA</option>
+            <option value='MCD'>MCD</option>
+            <option value='MHI'>MHI</option>
+            <option value='MWA'>MWA</option>
+            <option value='NDM'>NDM</option>
+            <option value='NRI'>NRI</option>
+            <option value='NVS'>NVS</option>
+            <option value='PBT'>PBT</option>
+            <option value='PHA'>PHA</option>
+            <option value='PMA'>PMA</option>
+            <option value='RMA'>RMA</option>
+            <option value='SDE'>SDE</option>
+            <option value='SDR'>SDR</option>
+            <option value='SRE'>SRE</option>
+            <option value='SRV'>SRV</option>
+            <option value='TNI'>TNI</option>
+            <option value='TSE'>TSE</option>
+            <option value='XPA'>XPA</option>
+        </select>
+        
+        <div id='calendar'></div>
+
+        <label>Lien vers le calendrier</label>
+    <div class="input-group">
+        <input class="form-control" value="" id="ical" readonly>
+        <div class="input-group-append">
+            <a class="btn btn-dark" id="download" href="plop" target="_blank">
+            <i class="fa fa-download fa-fw"></i> Télécharger
+            </a>
+        </div>
+        <div class="valid-feedback invisible">Le lien a été copié vers votre presse-papier avec success.</div>
+    </div>
+
+    <p> </p>
+
+    </main>
+    <footer class="footer">
+        <div class="container">
+          <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/lang-all.js'></script>
+
+<script src="js/ical.js"></script>
+<script src="js/ical_events.js"></script>
+<script src="js/ical_fullcalendar.js"></script>
+<script src="js/colorize_fullcalendar.js"></script>
+<script src="js/config.js"></script>
+
+
+</html>
