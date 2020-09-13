@@ -7,7 +7,7 @@ function hash_code(string) {
 }
 
 function hash_color(string) {
-    return 'hsl('+hash_code(string)%360+', 70%, 80%)'
+    return 'hsl('+hash_code(string)%360+', 70%, 30%)'
 }
 
 function colorize_event(e) {
