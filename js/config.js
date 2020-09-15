@@ -54,23 +54,20 @@ $(document).ready(function() {
         buttonText: {list: 'Semainier'}
     });
 
-    // Load first timetable
-    first_value = initialTimetable();
+    function load_timetable(timetable) {
+	load_ics({
+            url: REP + timetable + '.ics',
+            event_properties: {color: hash_color(timetable)}
+	});
+    }
 
-    load_ics({
-        url: REP + first_value + '.ics',
-        event_properties: {color: hash_color(first_value)}
-    });
-    
+    // Load first timetable
+    load_timetable(initialTimetable());
 
     // Action on menu
     $('#select').on('change', function() {
-        ics = {
-            url: REP + $(this).val() + ".ics",
-            event_properties: {color: hash_color($(this).val())}
-        };
         $('#calendar').fullCalendar('removeEvents');
-        load_ics(ics);
+	load_timetable($(this).val());
     });
 
     // Copy link to clipboard
