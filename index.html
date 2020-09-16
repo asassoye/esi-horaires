@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
+    <link rel="stylesheet" href="css/timetable.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
@@ -21,54 +22,13 @@
     <script src="js/ical_events.js"></script>
     <script src="js/ical_fullcalendar.js"></script>
     <script src="js/config.js"></script>
-    <style>
-        html {
-            position: relative;
-            min-height: 100%;
-        }
-
-        .footer {
-            width: 100%;
-            background-color: #f5f5f5;
-            padding: 2rem 0;
-            margin-top: 2rem;
-        }
-
-        .footer a {
-            text-decoration: none;
-            color: #6c757d;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: auto;
-            max-width: 1100px;
-            padding: 0 15px;
-        }
-
-        #select {
-            margin: 1rem 0;
-        }
-
-        #logo {
-            float: right;
-            margin-left: 2rem;
-        }
-
-        #calendar {
-            margin-bottom: 2rem;
-        }
-    </style>
-
+    
 </head>
 
 <body>
     <main role="main" class="container">
         <img id="logo" src="img/HE2B-Logo-ESI.png" alt="logo ESI" width="200px" />
-        <h1 class="mt-5">Horaires ESI</h1>
+        <h1 id="title" class="mt-5">Horaires</h1>
         <p class="text-muted">Version pré-pré-alpha</p>
         <p class="lead">
             Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
@@ -86,96 +46,104 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <select id="select">
-            <option value="A111">A111</option>
-            <option value="A112">A112</option>
-            <option value="A121">A121</option>
-            <option value="A122">A122</option>
-            <option value="A131">A131</option>
-            <option value="A132">A132</option>
-            <option value="A211">A211</option>
-            <option value="A212">A212</option>
-            <option value="A221">A221</option>
-            <option value="A222">A222</option>
-            <option value="A231">A231</option>
-            <option value="A232">A232</option>
-            <option value="A311">A311</option>
-            <option value="A312">A312</option>
-            <option value="A321">A321</option>
-            <option value="A322">A322</option>
-            <option value="A331">A331</option>
-            <option value="A332">A332</option>
-            <option value="C111">C111</option>
-            <option value="C112">C112</option>
-            <option value="C121">C121</option>
-            <option value="C122">C122</option>
-            <option value="C211">C211</option>
-            <option value="C223">C223</option>
-            <option value="SEC4A">SEC4A</option>
-            <option value="SEC4B">SEC4B</option>
-            <option value="E11">E11</option>
-            <option value="E12">E12</option>
-            <option value="E21">E21</option>
-            <option value="E24">E24</option>
-            <option value="ABS">ABS</option>
-            <option value="BEJ">BEJ</option>
-            <option value="BFE">BFE</option>
-            <option value="BIS">BIS</option>
-            <option value="CLG">CLG</option>
-            <option value="CUV">CUV</option>
-            <option value="DBO">DBO</option>
-            <option value="DNA">DNA</option>
-            <option value="EGR">EGR</option>
-            <option value="HAL">HAL</option>
-            <option value="JDS">JDS</option>
-            <option value="JLC">JLC</option>
-            <option value="JSS">JSS</option>
-            <option value="JST">JST</option>
-            <option value="LBC">LBC</option>
-            <option value="LMA">LMA</option>
-            <option value="MBA">MBA</option>
-            <option value="MCD">MCD</option>
-            <option value="MHI">MHI</option>
-            <option value="MWA">MWA</option>
-            <option value="NDM">NDM</option>
-            <option value="NRI">NRI</option>
-            <option value="NVS">NVS</option>
-            <option value="PBT">PBT</option>
-            <option value="PHA">PHA</option>
-            <option value="PMA">PMA</option>
-            <option value="RMA">RMA</option>
-            <option value="SDE">SDE</option>
-            <option value="SDR">SDR</option>
-            <option value="SRE">SRE</option>
-            <option value="SRV">SRV</option>
-            <option value="TNI">TNI</option>
-            <option value="TSE">TSE</option>
-            <option value="XPA">XPA</option>
-            <option value='003'>local 003</option>
-            <option value='004'>local 004</option>
-            <option value='101'>local 101</option>
-            <option value='102'>local 102</option>
-            <option value='105'>local 105</option>
-            <option value='201'>local 201</option>
-            <option value='202'>local 202</option>
-            <option value='203'>local 203</option>
-            <option value='204'>local 204</option>
-            <option value='301'>local 301</option>
-            <option value='303'>local 303</option>
-            <option value='304'>local 304</option>
-            <option value='305'>local 305</option>
-            <option value='401'>local 401</option>
-            <option value='403'>local 403</option>
-            <option value='404'>local 404</option>
-            <option value='405'>local 405</option>
-            <option value='503'>local 503</option>
-            <option value='504'>local 504</option>
-            <option value='505'>local 505</option>
-            <option value='601'>local 601</option>
-            <option value='602'>local 602</option>
-            <option value='604'>local 604</option>
-      
-        </select>
+
+        <div id="select-group">
+            <select id="selectGroup" class="select">
+                <option value="A111">A111</option>
+                <option value="A112">A112</option>
+                <option value="A121">A121</option>
+                <option value="A122">A122</option>
+                <option value="A131">A131</option>
+                <option value="A132">A132</option>
+                <option value="A211">A211</option>
+                <option value="A212">A212</option>
+                <option value="A221">A221</option>
+                <option value="A222">A222</option>
+                <option value="A231">A231</option>
+                <option value="A232">A232</option>
+                <option value="A311">A311</option>
+                <option value="A312">A312</option>
+                <option value="A321">A321</option>
+                <option value="A322">A322</option>
+                <option value="A331">A331</option>
+                <option value="A332">A332</option>
+                <option value="C111">C111</option>
+                <option value="C112">C112</option>
+                <option value="C121">C121</option>
+                <option value="C122">C122</option>
+                <option value="C211">C211</option>
+                <option value="C223">C223</option>
+                <option value="SEC4A">SEC4A</option>
+                <option value="SEC4B">SEC4B</option>
+                <option value="E11">E11</option>
+                <option value="E12">E12</option>
+                <option value="E21">E21</option>
+                <option value="E24">E24</option>
+            </select>
+            
+            <select id="selectProf" class="select">           
+                <option value="ABS">ABS</option>
+                <option value="BEJ">BEJ</option>
+                <option value="BFE">BFE</option>
+                <option value="BIS">BIS</option>
+                <option value="CLG">CLG</option>
+                <option value="CUV">CUV</option>
+                <option value="DBO">DBO</option>
+                <option value="DNA">DNA</option>
+                <option value="EGR">EGR</option>
+                <option value="HAL">HAL</option>
+                <option value="JDS">JDS</option>
+                <option value="JLC">JLC</option>
+                <option value="JSS">JSS</option>
+                <option value="JST">JST</option>
+                <option value="LBC">LBC</option>
+                <option value="LMA">LMA</option>
+                <option value="MBA">MBA</option>
+                <option value="MCD">MCD</option>
+                <option value="MHI">MHI</option>
+                <option value="MWA">MWA</option>
+                <option value="NDM">NDM</option>
+                <option value="NRI">NRI</option>
+                <option value="NVS">NVS</option>
+                <option value="PBT">PBT</option>
+                <option value="PHA">PHA</option>
+                <option value="PMA">PMA</option>
+                <option value="RMA">RMA</option>
+                <option value="SDE">SDE</option>
+                <option value="SDR">SDR</option>
+                <option value="SRE">SRE</option>
+                <option value="SRV">SRV</option>
+                <option value="TNI">TNI</option>
+                <option value="TSE">TSE</option>
+                <option value="XPA">XPA</option>
+            </select>
+
+            <select id="selectLocal" class="select">
+                <option value='003'>L 003</option>
+                <option value='004'>L 004</option>
+                <option value='101'>L 101</option>
+                <option value='102'>L 102</option>
+                <option value='105'>L 105</option>
+                <option value='201'>L 201</option>
+                <option value='202'>L 202</option>
+                <option value='203'>L 203</option>
+                <option value='204'>L 204</option>
+                <option value='301'>L 301</option>
+                <option value='303'>L 303</option>
+                <option value='304'>L 304</option>
+                <option value='305'>L 305</option>
+                <option value='401'>L 401</option>
+                <option value='403'>L 403</option>
+                <option value='404'>L 404</option>
+                <option value='405'>L 405</option>
+                <option value='503'>L 503</option>
+                <option value='504'>L 504</option>
+                <option value='505'>L 505</option>
+                <option value='601'>L 601</option>
+                <option value='602'>L 602</option>
+                <option value='604'>L 604</option>
+            </select>
+        </div>
 
         <div id="calendar"></div>
 
