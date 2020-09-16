@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     selectLocal.addEventListener("change", () => {
         changeValue(selectLocal.value);
+        document.getElementById("selectGroup").selectedIndex = 0;
+        document.getElementById("selectProf").selectedIndex = 0;
     });
 
     /**
@@ -55,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     selectGroup.addEventListener("change", () => {
         changeValue(selectGroup.value);
+        document.getElementById("selectLocal").selectedIndex = 0;
+        document.getElementById("selectProf").selectedIndex = 0;
     });
 
     /**
@@ -62,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     selectProf.addEventListener("change", () => {
         changeValue(selectProf.value);
+        document.getElementById("selectGroup").selectedIndex = 0;
+        document.getElementById("selectLocal").selectedIndex = 0;
     });
 
     function changeValue(value){
@@ -122,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function load_ics(calendar, ical, ics) {
         calendar.removeAllEvents();
-        const fullUrl = `//${location.host}/${location.pathname}/ical/2020-2021/q1/${ics.url}`;
+        const fullUrl = `http://${location.host}/ical/2020-2021/q1/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
                 if(response.status < 200 || response.status > 300) {
