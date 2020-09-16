@@ -1,0 +1,54 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: auto;
+    max-width: 1100px;
+    padding: 0 15px;
+}
+
+.select {
+    margin: 1rem 0;
+}
+
+#logo {
+    float: right;
+    margin-left: 2rem;
+}
+
+#calendar {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px){
+    .fc-toolbar {
+        display: inline-block !important;
+        text-align: center;
+    }
+
+    .fc-toolbar-title {
+        margin: 1rem 0 !important;
+    }
+
+    #select-group {
+        text-align: center;
+    }
+}
