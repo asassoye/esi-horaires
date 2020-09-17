@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
@@ -47,107 +47,140 @@
             </button>
         </div>
 
-        <div id="select-group">
-            <span>
-            <select id="selectGroup" class="select">
-                <option selected>Groupe</option>
-                <option value="A111">A111</option>
-                <option value="A112">A112</option>
-                <option value="A121">A121</option>
-                <option value="A122">A122</option>
-                <option value="A131">A131</option>
-                <option value="A132">A132</option>
-                <option value="A211">A211</option>
-                <option value="A212">A212</option>
-                <option value="A221">A221</option>
-                <option value="A222">A222</option>
-                <option value="A231">A231</option>
-                <option value="A232">A232</option>
-                <option value="A311">A311</option>
-                <option value="A312">A312</option>
-                <option value="A321">A321</option>
-                <option value="A322">A322</option>
-                <option value="A331">A331</option>
-                <option value="A332">A332</option>
-                <option value="C111">C111</option>
-                <option value="C112">C112</option>
-                <option value="C121">C121</option>
-                <option value="C122">C122</option>
-                <option value="C211">C211</option>
-                <option value="C223">C223</option>
-                <option value="SEC4A">SEC4A</option>
-                <option value="SEC4B">SEC4B</option>
-                <option value="E11">E11</option>
-                <option value="E12">E12</option>
-                <option value="E21">E21</option>
-                <option value="E24">E24</option>
-            </select>
-        </span>
-            
-            <select id="selectProf" class="select">          
-                <option selected>Prof</option> 
-                <option value="ABS">ABS</option>
-                <option value="BEJ">BEJ</option>
-                <option value="BFE">BFE</option>
-                <option value="BIS">BIS</option>
-                <option value="CLG">CLG</option>
-                <option value="CUV">CUV</option>
-                <option value="DBO">DBO</option>
-                <option value="DNA">DNA</option>
-                <option value="EGR">EGR</option>
-                <option value="HAL">HAL</option>
-                <option value="JDS">JDS</option>
-                <option value="JLC">JLC</option>
-                <option value="JSS">JSS</option>
-                <option value="JST">JST</option>
-                <option value="LBC">LBC</option>
-                <option value="LMA">LMA</option>
-                <option value="MBA">MBA</option>
-                <option value="MCD">MCD</option>
-                <option value="MHI">MHI</option>
-                <option value="MWA">MWA</option>
-                <option value="NDM">NDM</option>
-                <option value="NRI">NRI</option>
-                <option value="NVS">NVS</option>
-                <option value="PBT">PBT</option>
-                <option value="PHA">PHA</option>
-                <option value="PMA">PMA</option>
-                <option value="RMA">RMA</option>
-                <option value="SDE">SDE</option>
-                <option value="SDR">SDR</option>
-                <option value="SRE">SRE</option>
-                <option value="SRV">SRV</option>
-                <option value="TNI">TNI</option>
-                <option value="TSE">TSE</option>
-                <option value="XPA">XPA</option>
-            </select>
+        <div class="card mb-5">
+            <div class="card-body">
+                <h5 class="card-title">Selection de l'horaire</h5>
+                <div class="row">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="selectGroup" class="form-control custom-select">
+                            <option disabled selected>Groupe</option>
+                            <optgroup label="Bloc 1">
+                            <option value="A111">A111</option>
+                            <option value="A112">A112</option>
+                            <option value="A121">A121</option>
+                            <option value="A122">A122</option>
+                            <option value="A131">A131</option>
+                            <option value="A132">A132</option>
+                            <option value="A211">A211</option>
+                            <option value="A212">A212</option>
+                            <option value="A221">A221</option>
+                            <option value="A222">A222</option>
+                            <option value="A231">A231</option>
+                            <option value="A232">A232</option>
+                            <option value="A311">A311</option>
+                            <option value="A312">A312</option>
+                            <option value="A321">A321</option>
+                            <option value="A322">A322</option>
+                            <option value="A331">A331</option>
+                            <option value="A332">A332</option>
+                            </optgroup>
+                            <optgroup label="Bloc 2">
+                            <option value="C111">C111</option>
+                            <option value="C112">C112</option>
+                            <option value="C121">C121</option>
+                            <option value="C122">C122</option>
+                            <option value="C211">C211</option>
+                            <option value="C223">C223</option>
+                            </optgroup>
+                            <optgroup label="Bloc 3">
+                                <option value="E11">E11</option>
+                                <option value="E12">E12</option>
+                                <option value="E21">E21</option>
+                                <option value="E24">E24</option>
+                            </optgroup>
+                            <optgroup label="Spécialisation sécurité">
+                            <option value="SEC4A">SEC4A</option>
+                            <option value="SEC4B">SEC4B</option>
+                            </optgroup>
 
-            <select id="selectLocal" class="select">
-                <option selected>Local</option>
-                <option value='003'>L 003</option>
-                <option value='004'>L 004</option>
-                <option value='101'>L 101</option>
-                <option value='102'>L 102</option>
-                <option value='105'>L 105</option>
-                <option value='201'>L 201</option>
-                <option value='202'>L 202</option>
-                <option value='203'>L 203</option>
-                <option value='204'>L 204</option>
-                <option value='301'>L 301</option>
-                <option value='303'>L 303</option>
-                <option value='304'>L 304</option>
-                <option value='305'>L 305</option>
-                <option value='401'>L 401</option>
-                <option value='403'>L 403</option>
-                <option value='404'>L 404</option>
-                <option value='405'>L 405</option>
-                <option value='503'>L 503</option>
-                <option value='504'>L 504</option>
-                <option value='505'>L 505</option>
-                <option value='601'>L 601</option>
-                <option value='602'>L 602</option>
-                <option value='604'>L 604</option>
-            </select>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="selectProf" class="form-control custom-select">
+                            <option disabled selected>Enseignant</option>
+                            <option value="ABS">ABS</option>
+                            <option value="BEJ">BEJ</option>
+                            <option value="BFE">BFE</option>
+                            <option value="BIS">BIS</option>
+                            <option value="CLG">CLG</option>
+                            <option value="CUV">CUV</option>
+                            <option value="DBO">DBO</option>
+                            <option value="DNA">DNA</option>
+                            <option value="EGR">EGR</option>
+                            <option value="HAL">HAL</option>
+                            <option value="JDS">JDS</option>
+                            <option value="JLC">JLC</option>
+                            <option value="JSS">JSS</option>
+                            <option value="JST">JST</option>
+                            <option value="LBC">LBC</option>
+                            <option value="LMA">LMA</option>
+                            <option value="MBA">MBA</option>
+                            <option value="MCD">MCD</option>
+                            <option value="MHI">MHI</option>
+                            <option value="MWA">MWA</option>
+                            <option value="NDM">NDM</option>
+                            <option value="NRI">NRI</option>
+                            <option value="NVS">NVS</option>
+                            <option value="PBT">PBT</option>
+                            <option value="PHA">PHA</option>
+                            <option value="PMA">PMA</option>
+                            <option value="RMA">RMA</option>
+                            <option value="SDE">SDE</option>
+                            <option value="SDR">SDR</option>
+                            <option value="SRE">SRE</option>
+                            <option value="SRV">SRV</option>
+                            <option value="TNI">TNI</option>
+                            <option value="TSE">TSE</option>
+                            <option value="XPA">XPA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="selectLocal" class="form-control custom-select">
+                            <option disabled selected>Local</option>
+                            <optgroup label="Rez-de-chaussée">
+                            <option value='003'>L 003</option>
+                            <option value='004'>L 004</option>
+                            </optgroup>
+                            <optgroup label="Étage 1">
+                            <option value='101'>L 101</option>
+                            <option value='102'>L 102</option>
+                            <option value='105'>L 105</option>
+                            </optgroup>
+                            <optgroup label="Étage 2">
+                            <option value='201'>L 201</option>
+                            <option value='202'>L 202</option>
+                            <option value='203'>L 203</option>
+                            <option value='204'>L 204</option>
+                            </optgroup>
+                            <optgroup label="Étage 3">
+                            <option value='301'>L 301</option>
+                            <option value='303'>L 303</option>
+                            <option value='304'>L 304</option>
+                            <option value='305'>L 305</option>
+                            </optgroup>
+                            <optgroup label="Étage 4">
+                            <option value='401'>L 401</option>
+                            <option value='403'>L 403</option>
+                            <option value='404'>L 404</option>
+                            <option value='405'>L 405</option>
+                            </optgroup>
+                            <optgroup label="Étage 5">
+                            <option value='503'>L 503</option>
+                            <option value='504'>L 504</option>
+                            <option value='505'>L 505</option>
+                            </optgroup>
+                            <optgroup label="Étage 6">
+                            <option value='601'>L 601</option>
+                            <option value='602'>L 602</option>
+                            <option value='604'>L 604</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         </div>
 
         <div id="calendar"></div>
