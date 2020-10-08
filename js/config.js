@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function load_ics(calendar, ical, ics) {
         calendar.removeAllEvents();
-        const fullUrl = `http://${location.host}/ical/${prefix}/2020-2021/q1/${ics.url}`;
+        const fullUrl = `//${location.host}/ical/${prefix}/2020-2021/q1/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
                 if(response.status < 200 || response.status > 300) {
@@ -143,11 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 calendar.batchRendering(() => {
                     calendar.addEventSource(fc_events(response, ics.event_properties));
                 });
-                Array.from(document.getElementsByClassName("valid-feedback")).forEach(e => {
+                Array.from(document.getElementsByClassName("valid-feedback"))
+                    .forEach(e => {
                     e.style.display = "none";
                 });
-                ical.value = fullUrl;
-                addToCalendarButton.href = `https://www.google.com/calendar/render?cid=${fullUrl}`;
+                ical.value = "https:" + fullUrl;
+                addToCalendarButton.href = 
+                    `https://www.google.com/calendar/render?cid=https:${fullUrl}`;
             })
             .then(() => calendar.render())
             .catch(e => console.error(e.message));
