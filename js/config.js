@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const prefix = new URLSearchParams(window.location.search).get("prefix") || "";
+    const prefix = new URLSearchParams(window.location.search).get("prefix") 
+        || "";
     const calendarEl = document.getElementById("calendar");
     //const select = document.getElementById("select");
     const selectGroup = document.getElementById("selectGroup");
@@ -129,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function load_ics(calendar, ical, ics) {
         calendar.removeAllEvents();
-        const fullUrl = `http://${location.host}/${prefix}ical/2020-2021/q1/${ics.url}`;
+        const fullUrl = `http://${location.host}/ical/${prefix}/2020-2021/q1/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
                 if(response.status < 200 || response.status > 300) {
