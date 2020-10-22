@@ -17,6 +17,12 @@ Timetables are visible at http://horaires.esi-bru.be
 
 Pull requests and issues are welcome. 
 
+To test locally (using `php -S`) :
+
+- `make updateSchedule` grabs a copy of the current schedule.
+
+- `make serve` launches a local webserver, using the local schedule.
+
 # Contributors
 
 
