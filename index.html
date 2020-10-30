@@ -26,39 +26,43 @@
 </head>
 
 <body>
-    <main role="main" class="container">
-        <img id="logo" src="img/HE2B-Logo-ESI.png" alt="logo ESI" width="200px" />
-        <h1 id="title" class="mt-5">Horaires</h1>
-        <p class="text-muted">Version beta</p>
-        <p class="lead">
-            Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
-            des <i>profs</i> pour le quadrimestre en cours.
-        </p>
-        <p>
-            <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
-            agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
-            <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
-            <i>ics</i>. Le lien se trouve en bas de page. Si vous
-            <b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
-            celui-ci sera mis à jour automatiquement. 
-        </p>
-        <div class="alert alert-warning alert-dismissible fade show"
-        role="alert">
-            <strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
-            avez cours à distance et un cours à l'école dans la même
-            demi-journée, vous pouvez demander un local pour suivre le cours à
-            distance auprès de la direction.
-            
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <main role="main" class="container mt-5">
+	<div class="alert alert-info alert-dismissible">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <div class="card mb-5">
+	    </button>
+            <img id="logo"
+		 src="img/HE2B-Logo-ESI.png"
+		 alt="logo ESI"
+		 width="200px" />
+	    <h1 id="title">
+		Horaires
+	    </h1>
+            <p class="text-muted">
+		Version beta
+	    </p>
+            <p class="lead">
+		Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
+		des <i>profs</i> pour le quadrimestre en cours.
+            </p>
+            <p>
+		<i>Tip :</i> il est possible de copier le lien d'un horaire dans son
+		agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
+		<i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
+		<i>ics</i>. Le lien se trouve en bas de page. Si vous
+		<b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
+		celui-ci sera mis à jour automatiquement. 
+            </p>
+		<strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
+		avez cours à distance et un cours à l'école dans la même
+		demi-journée, vous pouvez demander un local pour suivre le cours à
+		distance auprès de la direction.
+            </div>
+        <div class="card mb-md-5">
             <div class="card-body">
                 <h5 class="card-title">Selection de l'horaire</h5>
                 <div class="row">
-                    <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="col-md-3 mb-md-0">
                         <select id="selectGroup" class="form-control custom-select">
                             <option disabled selected>Groupe</option>
                             <optgroup label="Bloc 1">
@@ -102,7 +106,7 @@
 
                         </select>
                     </div>
-                    <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="col-md-3 mb-md-0">
                         <select id="selectProf" class="form-control custom-select">
                             <option disabled selected>Enseignant</option>
                             <option value="ABS">ABS</option>
@@ -141,7 +145,7 @@
                             <option value="XPA">XPA</option>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-3 mb-md-0">
+                    <div class="col-md-3 mb-md-0">
                         <select id="selectLocal" class="form-control custom-select">
                             <option disabled selected>Local</option>
                             <optgroup label="Rez-de-chaussée">
@@ -185,9 +189,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
         </div>
 
         <div id="calendar"></div>
