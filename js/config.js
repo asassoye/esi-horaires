@@ -40,8 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             el.removeAttribute("href");
         },
-        dateClick: (info) => {
-        }
+        navLinks: true
     });
     calendar.render();
 
