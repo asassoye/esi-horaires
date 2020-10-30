@@ -31,14 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         fixedWeekCount: false,
         showNonCurrentDates: false,
-        eventDidMount: ({event, el}) => {
+        eventDidMount: ({event}) => {
 	    let location = event.extendedProps.location;
             if (location && !event.title.endsWith(location)) {
                 event.setProp(
                     "title", 
                     `${event.title} - ${location}`);
             }
-            el.removeAttribute("href");
         },
         navLinks: true
     });
@@ -140,7 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then((response) => {
                 calendar.batchRendering(() => {
-                    calendar.addEventSource(fc_events(response, ics.event_properties));
+		    let fullCalendarEventSource = fc_events(response, ics.event_properties);
+		    fullCalendarEventSource.forEach(item => {
+			if (item.url === null) {
+			    delete item.url
+			}
+		    });		    
+                    calendar.addEventSource(fullCalendarEventSource);
                 });
                 Array.from(document.getElementsByClassName("valid-feedback"))
                     .forEach(e => {
