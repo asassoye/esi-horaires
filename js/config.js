@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         fixedWeekCount: false,
         showNonCurrentDates: false,
-        eventDidMount: ({event, el, view}) => {
-            if (!event.title.endsWith(event.extendedProps.location) 
-                    && event.extendedProps.location) {
+        eventDidMount: ({event, el}) => {
+	    let location = event.extendedProps.location;
+            if (location && !event.title.endsWith(location)) {
                 event.setProp(
                     "title", 
-                    `${event.title} - ${event.extendedProps.location}`);
+                    `${event.title} - ${location}`);
             }
             el.removeAttribute("href");
         },
