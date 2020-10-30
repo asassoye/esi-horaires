@@ -38,7 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     `${event.title} - ${location}`);
             }
         },
-        navLinks: true
+        navLinks: true,
+        eventClick({ jsEvent, event }) {
+	    jsEvent.preventDefault(); // don't let the browser navigate
+	    let cours = parseDesc(event.extendedProps.description);
+	    let prof = cours.profacro;
+	    if (prof && cours.lieu && cours.lieu.match(/distance/)) {
+		$("#profacro").text(prof);
+		$("#meetlink").attr("href", meetlink(prof));
+		$("#meetmodal").modal('show');
+	    }
+	}
     });
     calendar.render();
 
@@ -212,3 +222,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return `hsl(210, 67%, 53%)`;
     }
 });
+
+function parseDesc(description) {
+    let obj = {};
+    // chaque ligne de /description/ est de la forme: "truc : valeur"
+    for (let item of description.split('\n')) {
+	let [key, value] = item.split(' : ')
+
+	switch (key) {
+	case "Matière":
+	    key = 'aa';
+	    break;
+	case "TD":
+	    key = 'groupes'
+	    value = value.split(', ')
+	    break;
+	case "Enseignant":
+	    key = 'prof'
+	    if (value.match(/^[A-Z][A-Z][A-Z]\b/)) // récupérer l'acronyme du prof
+		obj['profacro'] = value.slice(0, 3);
+	    break;
+	case "Salle":
+	    key = 'lieu'
+	    break
+	default:
+	    continue;
+	}
+	obj[key] = value;
+    }
+    return obj;
+}
+
+function meetlink(prof) {
+    return "https://g.co/meet/esi-" + prof.toLowerCase();
+}
