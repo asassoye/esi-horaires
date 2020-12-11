@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const prefix = new URLSearchParams(window.location.search).get("prefix") 
         || "";
     const calendarEl = document.getElementById("calendar");
-    //const select = document.getElementById("select");
     const selectGroup = document.getElementById("selectGroup");
     const selectProf = document.getElementById("selectProf");
     const selectLocal = document.getElementById("selectLocal");
@@ -107,15 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function initialTimetable() {
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get("q");
-        if (query) {
-            load_ics(calendar, ical, {
-                url: query + ".ics",
-                event_properties: {
-                    color: hash_color(query),
-                },
-            });
-        document.getElementById("title").innerHTML = "Horaires " + query;
-        }
+        if (query) changeValue(query);
     }
 
     /**
@@ -131,13 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const fullUrl = `//${location.host}/ical/${prefix}/2020-2021/q2/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
-                if(response.status < 200 || response.status > 300) {
-                    throw new Error("Not found");
+                if(! response.ok) {
+                    throw new Error("HTTP error: " + response.status);
                 }
-                return response;
+                return response.text();
             })
-            .then(response => response.text())
-            .then((response) => {
+            .then(response => {
                 calendar.batchRendering(() => {
                     let fullCalendarEventSource = 
                         fc_events(response, ics.event_properties);
