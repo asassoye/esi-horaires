@@ -80,3 +80,19 @@ html {
 .remediation {
     border-left-color: #806c00;
 }
+
+.inline {
+    display: inline;
+}
+
+ul.inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-left: 0px;
+    list-style: none;
+}
+
+ul.inline > li {
+    display: inline;
+    padding: 0px 2px;
+}
