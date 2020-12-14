@@ -70,9 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         addLinks(groupes, "#groupes");
         
-        console.log(profacro)
-        console.log(cours.lieux)
-        console.log(meetlink(profacro))
         if (profacro
             && profacro.length === 3
             && cours.lieux?.some(it => it.match(/distance/))) {
