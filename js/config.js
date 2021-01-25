@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function load_ics(calendar, ical, ics) {
         calendar.removeAllEvents();
-        const fullUrl = `//${location.host}/ical/${prefix}/2020-2021/q1/${ics.url}`;
+        const fullUrl = `//${location.host}/ical/${prefix}/2020-2021/q2/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
                 if(response.status < 200 || response.status > 300) {
