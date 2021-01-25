@@ -7,57 +7,35 @@
 
     <title>Horaires ESI - beta</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
-    <link rel="stylesheet" href="css/timetable.css"/>
+    <link rel="stylesheet" href="css/timetable.css" />
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/locales/fr.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
- 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
     <script src="js/ical.js"></script>
     <script src="js/ical_events.js"></script>
     <script src="js/ical_fullcalendar.js"></script>
     <script src="js/config.js"></script>
-    
+
 </head>
 
 <body>
     <main role="main" class="container mt-5">
-	<div class="alert alert-info alert-dismissible">
-	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-	    </button>
-            <img id="logo"
-		 src="img/HE2B-Logo-ESI.png"
-		 alt="logo ESI"
-		 width="200px" />
-	    <h1 id="title">
-		Horaires
-	    </h1>
-            <p class="text-muted">
-		Version beta
-	    </p>
-            <p class="lead">
-		Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
-		des <i>profs</i> pour le quadrimestre en cours.
-            </p>
-            <p>
-		<i>Tip :</i> il est possible de copier le lien d'un horaire dans son
-		agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
-		<i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
-		<i>ics</i>. Le lien se trouve en bas de page. Si vous
-		<b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
-		celui-ci sera mis à jour automatiquement. 
-            </p>
-		<strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
-		avez cours à distance et un cours à l'école dans la même
-		demi-journée, vous pouvez demander un local pour suivre le cours à
-		distance auprès de la direction.
-            </div>
+        <img id="logo" src="img/HE2B-Logo-ESI.png" alt="logo ESI" width="200px" />
+        <h1 id="title">
+            Horaires
+        </h1>
+        
         <div class="card mb-md-5">
             <div class="card-body">
                 <h5 class="card-title">Selection de l'horaire</h5>
@@ -66,32 +44,32 @@
                         <select id="selectGroup" class="form-control custom-select">
                             <option disabled selected>Groupe</option>
                             <optgroup label="Bloc 1">
-                            <option value="A111">A111</option>
-                            <option value="A112">A112</option>
-                            <option value="A121">A121</option>
-                            <option value="A122">A122</option>
-                            <option value="A131">A131</option>
-                            <option value="A132">A132</option>
-                            <option value="A211">A211</option>
-                            <option value="A212">A212</option>
-                            <option value="A221">A221</option>
-                            <option value="A222">A222</option>
-                            <option value="A231">A231</option>
-                            <option value="A232">A232</option>
-                            <option value="A311">A311</option>
-                            <option value="A312">A312</option>
-                            <option value="A321">A321</option>
-                            <option value="A322">A322</option>
-                            <option value="A331">A331</option>
-                            <option value="A332">A332</option>
+                                <option value="A111">A111</option>
+                                <option value="A112">A112</option>
+                                <option value="A121">A121</option>
+                                <option value="A122">A122</option>
+                                <option value="A131">A131</option>
+                                <option value="A132">A132</option>
+                                <option value="A211">A211</option>
+                                <option value="A212">A212</option>
+                                <option value="A221">A221</option>
+                                <option value="A222">A222</option>
+                                <option value="A231">A231</option>
+                                <option value="A232">A232</option>
+                                <option value="A311">A311</option>
+                                <option value="A312">A312</option>
+                                <option value="A321">A321</option>
+                                <option value="A322">A322</option>
+                                <option value="A331">A331</option>
+                                <option value="A332">A332</option>
                             </optgroup>
                             <optgroup label="Bloc 2">
-                            <option value="C111">C111</option>
-                            <option value="C112">C112</option>
-                            <option value="C121">C121</option>
-                            <option value="C122">C122</option>
-                            <option value="C211">C211</option>
-                            <option value="C223">C223</option>
+                                <option value="C111">C111</option>
+                                <option value="C112">C112</option>
+                                <option value="C121">C121</option>
+                                <option value="C122">C122</option>
+                                <option value="C211">C211</option>
+                                <option value="C223">C223</option>
                             </optgroup>
                             <optgroup label="Bloc 3">
                                 <option value="E11">E11</option>
@@ -100,8 +78,8 @@
                                 <option value="E24">E24</option>
                             </optgroup>
                             <optgroup label="Spécialisation sécurité">
-                            <option value="SEC4A">SEC4A</option>
-                            <option value="SEC4B">SEC4B</option>
+                                <option value="SEC4A">SEC4A</option>
+                                <option value="SEC4B">SEC4B</option>
                             </optgroup>
 
                         </select>
@@ -149,46 +127,72 @@
                         <select id="selectLocal" class="form-control custom-select">
                             <option disabled selected>Local</option>
                             <optgroup label="Rez-de-chaussée">
-                            <option value='003'>L 003</option>
-                            <option value='004'>L 004</option>
+                                <option value='003'>L 003</option>
+                                <option value='004'>L 004</option>
                             </optgroup>
                             <optgroup label="Étage 1">
-                            <option value='101'>L 101</option>
-                            <option value='102'>L 102</option>
-                            <option value='105'>L 105</option>
+                                <option value='101'>L 101</option>
+                                <option value='102'>L 102</option>
+                                <option value='105'>L 105</option>
                             </optgroup>
                             <optgroup label="Étage 2">
-                            <option value='201'>L 201</option>
-                            <option value='202'>L 202</option>
-                            <option value='203'>L 203</option>
-                            <option value='204'>L 204</option>
+                                <option value='201'>L 201</option>
+                                <option value='202'>L 202</option>
+                                <option value='203'>L 203</option>
+                                <option value='204'>L 204</option>
                             </optgroup>
                             <optgroup label="Étage 3">
-                            <option value='301'>L 301</option>
-                            <option value='303'>L 303</option>
-                            <option value='304'>L 304</option>
-                            <option value='305'>L 305</option>
+                                <option value='301'>L 301</option>
+                                <option value='303'>L 303</option>
+                                <option value='304'>L 304</option>
+                                <option value='305'>L 305</option>
                             </optgroup>
                             <optgroup label="Étage 4">
-                            <option value='401'>L 401</option>
-                            <option value='403'>L 403</option>
-                            <option value='404'>L 404</option>
-                            <option value='405'>L 405</option>
+                                <option value='401'>L 401</option>
+                                <option value='403'>L 403</option>
+                                <option value='404'>L 404</option>
+                                <option value='405'>L 405</option>
                             </optgroup>
                             <optgroup label="Étage 5">
-                            <option value='503'>L 503</option>
-                            <option value='504'>L 504</option>
-                            <option value='505'>L 505</option>
+                                <option value='503'>L 503</option>
+                                <option value='504'>L 504</option>
+                                <option value='505'>L 505</option>
                             </optgroup>
                             <optgroup label="Étage 6">
-                            <option value='601'>L 601</option>
-                            <option value='602'>L 602</option>
-                            <option value='604'>L 604</option>
+                                <option value='601'>L 601</option>
+                                <option value='602'>L 602</option>
+                                <option value='604'>L 604</option>
                             </optgroup>
                         </select>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        
+            <p class="text-muted">
+                Version beta
+            </p>
+            <p class="lead">
+                Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
+                des <i>profs</i> pour le quadrimestre en cours.
+            </p>
+            <p>
+                <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
+                agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
+                <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
+                <i>ics</i>. Le lien se trouve en bas de page. Si vous
+                <b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
+                celui-ci sera mis à jour automatiquement.
+            </p>
+            <strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
+            avez cours à distance et un cours à l'école dans la même
+            demi-journée, vous pouvez demander un local pour suivre le cours à
+            distance auprès de la direction.
         </div>
 
         <div id="calendar"></div>
@@ -219,11 +223,14 @@
                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Contact horaires
                 </a>
             </p>
-            <p class="text-muted"><i>Fait à l'arrache pour l'ESI par Pierre, Nicolas (<i>Némo</i>) et Frédéric (<i>Sébastien</i>).</i></p>
+            <p class="text-muted"><i>Fait à l'arrache pour l'ESI par Pierre, Nicolas (<i>Némo</i>) et Frédéric
+                    (<i>Sébastien</i>).</i></p>
             <p class="text-muted small">
-                <a href="https://git.esi-bru.be/pbt/displaytimetable/-/raw/master/LICENSE" alt="license mit">MIT licence</a> - 2020
+                <a href="https://git.esi-bru.be/pbt/displaytimetable/-/raw/master/LICENSE" alt="license mit">MIT
+                    licence</a> - 2020
             </p>
         </div>
     </footer>
 </body>
+
 </html>
