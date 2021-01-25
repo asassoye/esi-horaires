@@ -139,18 +139,39 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then((response) => {
                 calendar.batchRendering(() => {
-		    let fullCalendarEventSource = fc_events(response, ics.event_properties);
-		    fullCalendarEventSource.forEach(item => {
-			if (item.url === null) {
-			    delete item.url
-			}
-		    });		    
+                    let fullCalendarEventSource = 
+                        fc_events(response, ics.event_properties);
+		            fullCalendarEventSource.forEach(item => {                        
+                        if (item.url === null) {
+			                delete item.url
+                        }
+                        console.log(item.description);
+                        /*
+                         * default color is blue but,
+                         * change color for specifics events
+                        */
+                        if (item.title.includes("Déplacement")){
+                            // ligth red
+                            item.color ="hsl(0, 100%, 40%)";
+                        }                    
+                        if (item.description !== null 
+                                && item.description.includes("À distance")) {
+                            // dark red
+                            item.color = "hsl(0, 100%, 20%)";
+                        }
+                        if (item.title.includes("Remédiation")){
+                            // very dark yellow
+                            item.color = "hsl(51, 100%, 25%)";
+                            //item.color = "hsl(91, 40%, 36%)";
+                        }                        
+		            });		    
                     calendar.addEventSource(fullCalendarEventSource);
                 });
-                Array.from(document.getElementsByClassName("valid-feedback"))
+                Array
+                    .from(document.getElementsByClassName("valid-feedback"))
                     .forEach(e => {
-                    e.style.display = "none";
-                });
+                        e.style.display = "none";
+                    });
                 ical.value = "https:" + fullUrl;
                 addToCalendarButton.href = 
                     `https://www.google.com/calendar/render?cid=https:${fullUrl}`;
@@ -197,6 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {string} a hsl color based on the provided string
      */
     function hash_color(string) {
-        return `hsl(${hash_code(string) % 360}, 30%, 50%)`;
+        //return `hsl(${hash_code(string) % 360}, 30%, 50%)`;
+        // default color, always blue
+        return `hsl(210, 67%, 53%)`;
     }
 });
