@@ -56,3 +56,27 @@ html {
         text-align: center;
     }
 }
+
+.legende {
+    margin-bottom: 20px;
+}
+
+.legende span {
+    border-left-style: solid;
+    border-left-width: 20px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.distance {
+    border-left-color: #660000;
+}
+.local {
+    border-left-color: #3787d7;
+}
+.deplacement {
+    border-left-color: #cc0000;
+}
+.remediation {
+    border-left-color: #806c00;
+}
