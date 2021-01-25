@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (item.url === null) {
 			                delete item.url
                         }
-                        console.log(item.description);
                         /*
                          * default color is blue but,
                          * change color for specifics events
