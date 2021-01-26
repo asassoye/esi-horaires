@@ -151,13 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         */                                            
                         if (item.location !== null 
                                 && item.description.includes("À distance")) {
-                            // dark red
-                            item.color = "hsl(0, 100%, 20%)";
+                            item.color = "hsl(341, 70%, 59%)";
                         }
                         if (item.title.includes("Remédiation")){
-                            // very dark yellow
-                            item.color = "hsl(51, 100%, 25%)";
-                            //item.color = "hsl(91, 40%, 36%)";
+                            item.color = "hsl(71, 70%, 50%)";                            
                         }                        
 		            });		    
                     calendar.addEventSource(fullCalendarEventSource);
@@ -215,6 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function hash_color(string) {
         //return `hsl(${hash_code(string) % 360}, 30%, 50%)`;
         // default color, always blue
-        return `hsl(210, 67%, 53%)`;
+        return `hsl(221, 70%, 59%)`;
     }
 });

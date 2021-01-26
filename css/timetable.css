@@ -69,14 +69,14 @@ html {
 }
 
 .distance {
-    border-left-color: #660000;
+    border-left-color: #e04e7d;
 }
 .local {
-    border-left-color: #3787d7;
+    border-left-color: #4e7de0;
 }
 .deplacement {
     border-left-color: #cc0000;
 }
 .remediation {
-    border-left-color: #806c00;
+    border-left-color: #b8d926;
 }
