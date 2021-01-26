@@ -148,11 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         /*
                          * default color is blue but,
                          * change color for specifics events
-                        */
-                        if (item.title.includes("Déplacement")){
-                            // ligth red
-                            item.color ="hsl(0, 100%, 40%)";
-                        }                    
+                        */                                            
                         if (item.location !== null 
                                 && item.description.includes("À distance")) {
                             // dark red
