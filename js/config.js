@@ -69,14 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
         setChild("#aa", aa ?? "?");
 
         addLinks(groupes, "#groupes");
-        
+
         if (profacro
             && profacro.length === 3
+            && cours.type != 'Examen'
             && cours.lieux?.some(it => it.match(/distance/))) {
             let link =  meetlink(profacro)
 	    $("#meetlink").attr("href", link).text(link);
             setChild("#lieux", "À distance")
         } else {
+            $("#meetlink").attr("href", "").text("");
             addLinks(lieux, "#lieux")
         }
 
@@ -321,11 +323,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// renvoie un objet avec les clefs: aa, groupes, profs (les noms), lieux, profacro (l'acronyme. A priori un seul.)
+// renvoie un objet avec les clefs: aa, groupes, profs (les noms), lieux, profacro (l'acronyme. A priori un seul.), type
 
 function parseDesc(description) {
     let obj = {};
     // chaque ligne de /description/ est de la forme: "truc : valeur"
+
     for (let item of description.split('\n')) {
 	let [key, value] = item.split(' : ')
 	switch (key) {
@@ -348,6 +351,9 @@ function parseDesc(description) {
             key = 'lieux'
             value = value.split(', ')
             break
+        case "Type":
+            key = 'type';
+            break;
 	default:
 	    continue;
 	}
