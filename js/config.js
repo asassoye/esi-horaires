@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             // ligth red
                             item.color ="hsl(0, 100%, 40%)";
                         }                    
-                        if (item.description !== null 
+                        if (item.location !== null 
                                 && item.description.includes("À distance")) {
                             // dark red
                             item.color = "hsl(0, 100%, 20%)";
