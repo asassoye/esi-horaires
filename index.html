@@ -267,6 +267,77 @@
             </p>
         </div>
     </footer>
+    <div class="modal fade"
+	 id="meetmodal"
+	 tabindex="-1"
+	 role="dialog"
+	 aria-labelledby="exampleModalCenterTitle"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered"
+	     role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+              <h5 class="modal-title">Détails de la séance</h5>
+              <button type="button"
+		      class="close"
+		      data-dismiss="modal"
+		      aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+	  </div>
+	  <div class="modal-body">
+              <ul>
+                  <li>
+                      Activité: <span id="aa"></span>
+                  </li>
+                  <li>
+                      Local: <div id="lieux" class="inline"></span>
+                  </li>
+                  <li style="display: none"> <!-- ne pas afficher, pas assez sûr que ce sera bon -->
+                      Lien meet: <a href="#" id="meetlink">aucun lien</a>
+                  </li>
+                  <li>
+                      Prof: <span id="profacro"></span>
+                  </li>
+                  <li>
+                      Groupes: <div id="groupes" class="inline"></div>
+                  </li>
+              </ul>
+	  </div>
+	  <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="modal fade"
+	 id="errormodal"
+	 tabindex="-1"
+	 role="dialog"
+	 aria-labelledby="exampleModalCenterTitleError"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered"
+	     role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+              <h5 class="modal-title">Erreur</h5>
+              <button type="button"
+		      class="close"
+		      data-dismiss="modal"
+		      aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+	  </div>
+	  <div class="modal-body">
+              L'horaire demandé n'a pas pu être chargé.
+	  </div>
+	  <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
+        </div>
+    </div>
 </body>
 
 </html>

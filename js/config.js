@@ -1,8 +1,93 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    /**
+     * Un array tel que ['A121', 'A122' ] produira 
+     * des liens vers les horaires correspondant, 
+     * placés dans le noeud donné par le sélecteur.
+     */
+    function addLinks(array, selector) {
+        let resultNode = '?';
+        if (array && array.length > 0) {
+            resultNode = $("<ul>").addClass('inline')
+            array.forEach(it => {
+                let link = makeLink(it)
+                $("<li>").append(link).appendTo(resultNode)
+            })
+        }
+        setChild(selector, resultNode)
+    }
+
+    /**
+     * Remplace les enfants du noeud sélectionnér par l'enfant donné. 
+     */
+    function setChild(selector, newChild) {
+        $(selector).html('')
+        $(selector).append(newChild ?? "?");
+
+    }
+
+
+    /** 
+     * Crée un lien vers la cible donnée (local, prof ou groupe)
+
+     * Le lien créé possède la bonne href (pour permettre le copier-coller),
+     * mais, si cliqué, ne produira pas de changement de page.
+     */
+    function makeLink(target) {
+        let urlTarget = new URL(document.location)
+        urlTarget.searchParams.set('q', target);
+        return $("<a>")
+            .attr("href", String(urlTarget))
+            .data('query', target)
+            .click(function (e) {
+                e.preventDefault()
+                let query = $(e.target).data('query')
+                changeValue(query)
+                $("#meetmodal").modal('hide')
+            })
+            .text(target)
+    }
+
+    /** 
+     * Quand un événement FullCalendar est cliqué,
+     * affiche une modale détaillant le cours cliqué
+     * 
+     * La modale est fournie par Bootstrap
+     * (https://getbootstrap.com/docs/4.0/components/modal/)
+     * 
+     * Ceci est fait pour être appelé comme eventClick 
+     * (https://fullcalendar.io/docs/eventClick)
+     */
+    function showCourseInModal({ jsEvent, event }) {
+        jsEvent.preventDefault(); // don't let the browser navigate
+
+        let cours = parseDesc(event.extendedProps.description);
+        let { profacro, aa, lieux, groupes } = cours;
+
+
+        setChild("#profacro", profacro ? makeLink(profacro) : "?");
+        setChild("#aa", aa ?? "?");
+
+        addLinks(groupes, "#groupes");
+
+        if (profacro
+            && profacro.length === 3
+            && cours.type != 'Examen'
+            && cours.lieux?.some(it => it.match(/distance/))) {
+            let link =  meetlink(profacro)
+	    $("#meetlink").attr("href", link).text(link);
+            setChild("#lieux", "À distance")
+        } else {
+            $("#meetlink").attr("href", "").text("");
+            addLinks(lieux, "#lieux")
+        }
+
+        $("#meetmodal").modal('show');
+    }
+
     const prefix = new URLSearchParams(window.location.search).get("prefix") 
         || "";
     const calendarEl = document.getElementById("calendar");
-    //const select = document.getElementById("select");
     const selectGroup = document.getElementById("selectGroup");
     const selectProf = document.getElementById("selectProf");
     const selectLocal = document.getElementById("selectLocal");
@@ -39,7 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     `${event.title} - ${location}`);
             }
         },
-        navLinks: true
+        navLinks: true,
+        eventClick: showCourseInModal
     });
     calendar.render();
 
@@ -99,6 +185,14 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     initialTimetable();
 
+    function currentlySelectedInput() {
+        for (let input of [selectGroup, selectProf, selectLocal]) {
+            if (input.selectedIndex > 0) {
+                return input.value;
+            }
+        }
+    }
+
     /**
      * Initializes the timetable
      * 
@@ -107,14 +201,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function initialTimetable() {
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get("q");
-        if (query) {
-            load_ics(calendar, ical, {
-                url: query + ".ics",
-                event_properties: {
-                    color: hash_color(query),
-                },
-            });
-        document.getElementById("title").innerHTML = "Horaires " + query;
+
+        if (query) changeValue(query);
+        else {
+            // Firefox, e.g., keeps the selected value in memory when refreshing or using the back() button.
+            // It doesn't fire an onchange() event.
+            // If there's a value, use it.
+            let selectedVal = currentlySelectedInput();
+            if (selectedVal) {
+                changeValue(selectedVal)
+            }
+            // Perhaps we should listen for DOMAutoComplete event, or oninput ?
+            // (source : https://stackoverflow.com/questions/865490/firefox-capture-autocomplete-input-change-event/7600335)
         }
     }
 
@@ -131,13 +229,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const fullUrl = `//${location.host}/ical/${prefix}/2020-2021/q2/${ics.url}`;
         fetch(fullUrl)
             .then(response => {
-                if(response.status < 200 || response.status > 300) {
-                    throw new Error("Not found");
+                if(! response.ok) {
+                    throw new Error("HTTP error: " + response.status);
                 }
-                return response;
+                return response.text();
             })
-            .then(response => response.text())
-            .then((response) => {
+            .then(response => {
                 calendar.batchRendering(() => {
                     let fullCalendarEventSource = 
                         fc_events(response, ics.event_properties);
@@ -169,7 +266,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     `https://www.google.com/calendar/render?cid=https:${fullUrl}`;
             })
             .then(() => calendar.render())
-            .catch(e => console.error(e.message));
+            .catch(e => {
+                console.error(e.message)
+                $("#errormodal").modal('show');
+            });
     }
 
     /**
@@ -215,3 +315,46 @@ document.addEventListener("DOMContentLoaded", () => {
         return `hsl(221, 70%, 59%)`;
     }
 });
+
+// renvoie un objet avec les clefs: aa, groupes, profs (les noms), lieux, profacro (l'acronyme. A priori un seul.), type
+
+function parseDesc(description) {
+    let obj = {};
+    // chaque ligne de /description/ est de la forme: "truc : valeur"
+
+    for (let item of description.split('\n')) {
+	let [key, value] = item.split(' : ')
+	switch (key) {
+	case "Matière":
+	    key = 'aa';
+	    break;
+	case "TD":
+	    key = 'groupes'
+	    value = value.split(', ')
+	    break;
+	case "Enseignant":
+	case "Enseignants":
+	    key = 'profs'
+	    if (value.match(/^[A-Z][A-Z][A-Z]\b/)) // récupérer l'acronyme du prof
+		obj['profacro'] = value.slice(0, 3);
+            value = value.split(', ')
+	    break;
+	case "Salle":
+        case "Salles":
+            key = 'lieux'
+            value = value.split(', ')
+            break
+        case "Type":
+            key = 'type';
+            break;
+	default:
+	    continue;
+	}
+	obj[key] = value;
+    }
+    return obj;
+}
+
+function meetlink(prof) {
+    return "https://g.co/meet/esi-" + prof.toLowerCase();
+}
