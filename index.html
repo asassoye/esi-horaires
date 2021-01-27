@@ -35,7 +35,7 @@
         <h1 id="title">
             Horaires
         </h1>
-
+        
         <div class="card mb-md-5">
             <div class="card-body">
                 <h5 class="card-title">Selection de l'horaire</h5>
@@ -60,7 +60,7 @@
                                 <option value="B213">B213</option>
                                 <option value="B221">B221</option>
                                 <option value="B222">B222</option>
-                                <option value="B223">B223</option>
+                                <option value="B223">B223</option>                                
                             </optgroup>
                             <optgroup label="Bloc 2">
                                 <option value="D111">D111</option>
@@ -70,6 +70,7 @@
                                 <option value="D211">D211</option>
                                 <option value="D212">D212</option>
                                 <option value="D221">D221</option>
+                                <option value="F">F</option>
                             </optgroup>
                             <optgroup label="Spécialisation sécurité">
                                 <option value="SEC4A">SEC4A</option>
@@ -167,42 +168,66 @@
             </div>
         </div>
 
-        <div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div id="calendar"></div>
 
-            <p class="text-muted">
-                Version beta
-            </p>
-            <p class="lead">
-                Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
-                des <i>profs</i> pour le quadrimestre en cours.
-            </p>
-            <p>
-                <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
-                agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
-                <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
-                <i>ics</i>. Le lien se trouve en bas de page. Si vous
-                <b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
-                celui-ci sera mis à jour automatiquement.
-            </p>
-            <!--
-            <strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
-            avez cours à distance et un cours à l'école dans la même
-            demi-journée, vous pouvez demander un local pour suivre le cours à
-            distance auprès de la direction.-->
-            <strong>Code rouge</strong> : si vous avez des impossibilités pour
-            suivre les cours à distance, vous pouvez demander pour venir à
-            l'école auprès de la direction.
+        <!-- Button trigger modal -->
+        <div class="float-lg-right">
+            <button type="button" class="btn btn-secondary" 
+                    data-toggle="modal" data-target="#modalinfo">
+                Aide
+            </button>
         </div>
 
-        <div id="calendar"></div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalinfo" tabindex="-1" role="dialog" 
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Aide et <i>tips</i></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">
+                            Version beta
+                        </p>
+                        <p class="lead">
+                            Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
+                            des <i>profs</i> pour le quadrimestre en cours.
+                        </p>
+                        <p>
+                            <i>Tip :</i> il est possible de copier le lien d'un horaire dans son
+                            agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
+                            <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
+                            <i>ics</i>. Le lien se trouve en bas de page. Si vous
+                            <b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
+                            celui-ci sera mis à jour automatiquement.
+                        </p>
+                        <!--
+                                    <strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
+                                    avez cours à distance et un cours à l'école dans la même
+                                    demi-journée, vous pouvez demander un local pour suivre le cours à
+                                    distance auprès de la direction.-->
+                        <p>
+                            <strong class="text-danger">Code rouge</strong> : si vous avez des impossibilités pour
+                        suivre les cours à distance, vous pouvez demander pour venir à
+                        l'école auprès de la direction.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="legende">
             <span class="local">Sur place</span>    
             <span class="remediation">Remédiation</span>
-            <span class="deplacement">Déplacement école-domicile</span>
+            <!--<span class="deplacement">Déplacement école-domicile</span>-->
             <span class="distance">À distance</span>
         </div>
 
