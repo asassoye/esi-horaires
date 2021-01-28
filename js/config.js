@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const addToCalendarButton = document.getElementById("addToCalendar");
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "timeGridWeek",
-        weekends: false,
+        weekends: true,
+        hiddenDays: [0], // hide Sunday
         headerToolbar: {
             start: "prev,next today",
             center: "title",
