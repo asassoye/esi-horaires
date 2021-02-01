@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < string.length; ++i) {
             h = string.charCodeAt(i) + ((h << 5) - h);
         }
-        return h;
+        return (h << 5) - h
     }
 
     /**
