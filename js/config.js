@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /**
      * Un array tel que ['A121', 'A122' ] produira 
      * des liens vers les horaires correspondant, 
-     * placés dans le noeud donné par le sélecteur.
+     * placés dans le nœud donné par le sélecteur.
      */
     function addLinks(array, selector) {
         let resultNode = '?';
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * Remplace les enfants du noeud sélectionnér par l'enfant donné. 
+     * Remplace les enfants du nœud sélectionné par l'enfant donné. 
      */
     function setChild(selector, newChild) {
         $(selector).html('')
@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
      * mais, si cliqué, ne produira pas de changement de page.
      */
     function makeLink(target, toMode) {
-        // urlTarget ne sert qu'à avoir un lien copiable par clic droit, il n'est pas utilisé en interne
+        // urlTarget ne sert qu'à avoir un lien copiable par clic droit, 
+        // il n'est pas utilisé en interne
         let urlTarget = new URL(document.location)
         urlTarget.searchParams.set('q', target);
         if (toMode) urlTarget.searchParams.set('mode', toMode);
@@ -88,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $("#meetmodal").modal('show');
     }
 
-    let mode //peut valoir "cours" ou être indéfini. Dans le premier cas ça change les couleurs en fonction du groupe
+    let mode // peut valoir "cours" ou être indéfini. 
+             // Dans le premier cas ça change les couleurs en fonction du groupe
     const prefix = new URLSearchParams(window.location.search).get("prefix") 
         || "";
     const calendarEl = document.getElementById("calendar");
@@ -210,7 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (query) changeValue(query, urlParams.get("mode"));
         else {
-            // Firefox, e.g., keeps the selected value in memory when refreshing or using the back() button.
+            // Firefox, e.g., keeps the selected value in memory when 
+            // refreshing or using the back() button.
             // It doesn't fire an onchange() event.
             // If there's a value, use it.
             let selectedVal = currentlySelectedInput();
@@ -325,7 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// renvoie un objet avec les clefs: aa, groupes, profs (les noms), lieux, profacro (l'acronyme. A priori un seul.), type
+// renvoie un objet avec les clefs: aa, groupes, profs (les noms), 
+// lieux, profacro (l'acronyme. A priori un seul.), type
 
 function parseDesc(description) {
     let obj = {};
