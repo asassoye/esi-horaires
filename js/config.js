@@ -33,16 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
      * Le lien créé possède la bonne href (pour permettre le copier-coller),
      * mais, si cliqué, ne produira pas de changement de page.
      */
-    function makeLink(target) {
+    function makeLink(target, toMode) {
+        // urlTarget ne sert qu'à avoir un lien copiable par clic droit, il n'est pas utilisé en interne
         let urlTarget = new URL(document.location)
         urlTarget.searchParams.set('q', target);
+        if (toMode) urlTarget.searchParams.set('mode', toMode);
+        else urlTarget.searchParams.delete('mode');
         return $("<a>")
             .attr("href", String(urlTarget))
             .data('query', target)
             .click(function (e) {
                 e.preventDefault()
                 let query = $(e.target).data('query')
-                changeValue(query)
+                changeValue(query, toMode)
                 $("#meetmodal").modal('hide')
             })
             .text(target)
@@ -66,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         setChild("#profacro", profacro ? makeLink(profacro) : "?");
-        setChild("#aa", aa ?? "?");
+        setChild("#aa", makeLink(aa, "cours") ?? "?");
 
         addLinks(groupes, "#groupes");
 
@@ -85,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         $("#meetmodal").modal('show');
     }
 
+    let mode //peut valoir "cours" ou être indéfini. Dans le premier cas ça change les couleurs en fonction du groupe
     const prefix = new URLSearchParams(window.location.search).get("prefix") 
         || "";
     const calendarEl = document.getElementById("calendar");
@@ -157,11 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("selectLocal").selectedIndex = 0;
     });
 
-    function changeValue(value){
+    function changeValue(value, toMode){
+        mode = toMode
         load_ics(calendar, ical, {
             url: `${value}.ics`,
             event_properties: {
-                color: hash_color(value),
+                color: "hsl(221, 70%, 59%)"
             },
         });
         document.getElementById("title").innerHTML = "Horaires " + value;
@@ -203,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get("q");
 
-        if (query) changeValue(query);
+        if (query) changeValue(query, urlParams.get("mode"));
         else {
             // Firefox, e.g., keeps the selected value in memory when refreshing or using the back() button.
             // It doesn't fire an onchange() event.
@@ -239,22 +244,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 calendar.batchRendering(() => {
                     let fullCalendarEventSource = 
                         fc_events(response, ics.event_properties);
-		            fullCalendarEventSource.forEach(item => {                        
+                    fullCalendarEventSource.forEach(item => {                        
                         if (item.url === null) {
-			                delete item.url
+                            delete item.url
                         }
-                        /*
-                         * default color is blue but,
-                         * change color for specifics events
-                        */                                            
-                        if (item.location !== null 
+                        if (mode == "cours") {
+                            let parsed = parseDesc(item.description)
+                            
+                            if (parsed.groupes) {
+                                item.color = hash_color(parsed.groupes[0])
+                            }
+                        }
+                        else {
+                            if (item.location !== null 
                                 && item.description.includes("À distance")) {
-                            item.color = "hsl(341, 70%, 59%)";
+                                item.color = "hsl(341, 70%, 59%)";
+                            }
+                            if (item.title.includes("Remédiation")){
+                                item.color = "hsl(71, 70%, 50%)";                            
+                            }
                         }
-                        if (item.title.includes("Remédiation")){
-                            item.color = "hsl(71, 70%, 50%)";                            
-                        }                        
-		            });		    
+                    });		    
                     calendar.addEventSource(fullCalendarEventSource);
                 });
                 Array
@@ -311,9 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {string} a hsl color based on the provided string
      */
     function hash_color(string) {
-        //return `hsl(${hash_code(string) % 360}, 30%, 50%)`;
-        // default color, always blue
-        return `hsl(221, 70%, 59%)`;
+        return `hsl(${hash_code(string) % 360}, 30%, 50%)`;
     }
 });
 
@@ -323,8 +331,12 @@ function parseDesc(description) {
     let obj = {};
     // chaque ligne de /description/ est de la forme: "truc : valeur"
 
+    if (! description) return obj;
+
     for (let item of description.split('\n')) {
 	let [key, value] = item.split(' : ')
+        if (! value) continue;
+        
 	switch (key) {
 	case "Matière":
 	    key = 'aa';
