@@ -173,7 +173,7 @@
         <!-- Button trigger modal -->
         <div class="float-lg-right">
             <button type="button" class="btn btn-secondary" 
-                    data-toggle="modal" data-target="#modalinfo">
+                    data-toggle="modal" data-target="#modalinfo" aria-label="Aide">
                 <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> Aide
             </button>
         </div>
@@ -186,7 +186,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Aide et <i>tips</i></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -227,7 +227,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                        
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>                        
                     </div>
                 </div>
             </div>
@@ -244,11 +244,11 @@
         <label>Lien vers le calendrier</label>
         <div class="input-group">
             <input class="form-control" value="" id="ical" readonly>
-            <button id="icalbutton" class="btn btn-dark ml-1">
+            <button id="icalbutton" class="btn btn-dark ml-1" aria-label="Copier le lien">
                 <i class="fa fa-download fa-fw" aria-hidden="true"></i>
                 Copier le lien
             </button>
-            <a id="addToCalendar" class="btn btn-dark ml-1" href="#" target="_blank">
+            <a id="addToCalendar" class="btn btn-dark ml-1" href="#" target="_blank" aria-label="Ajouter au calendrier">
                 <i class="fa fa-google" aria-hidden="true"></i> Ajouter au calendrier
             </a>
 
@@ -290,7 +290,7 @@
               <button type="button"
 		      class="close"
 		      data-dismiss="modal"
-		      aria-label="Close">
+		      aria-label="Fermer">
               <span aria-hidden="true">&times;</span>
             </button>
 	  </div>
@@ -314,7 +314,7 @@
               </ul>
 	  </div>
 	  <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>
 	  </div>
 	</div>
       </div>
@@ -334,7 +334,7 @@
               <button type="button"
 		      class="close"
 		      data-dismiss="modal"
-		      aria-label="Close">
+		      aria-label="Fermer">
               <span aria-hidden="true">&times;</span>
             </button>
 	  </div>
@@ -342,7 +342,7 @@
               L'horaire demandé n'a pas pu être chargé.
 	  </div>
 	  <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>
 	  </div>
 	</div>
         </div>
