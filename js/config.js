@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function load_ics(calendar, ical, ics) {
         calendar.removeAllEvents();
-        const fullUrl = `${location.origin + location.pathname}/ical/${prefix}/2020-2021/q2/${ics.url}`;
+        const fullUrl = new URL(`ical/${prefix}/2020-2021/q2/${ics.url}`, location.origin + location.pathname);
         fetch(fullUrl)
             .then(response => {
                 if(! response.ok) {
@@ -276,8 +276,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         e.style.display = "none";
                     });
                 ical.value = fullUrl;
+                webcalUrl = new URL(fullUrl)
+                if (fullUrl.protocol === 'https:')
+                    webcalUrl.protocol = 'webcals:'
+                else
+                    webcalUrl.protocol = 'webcal:'
                 addToCalendarButton.href = 
-                    `https://www.google.com/calendar/render?cid=${fullUrl}`;
+                    `https://www.google.com/calendar/render?cid=${webcalUrl}`;
             })
             .then(() => calendar.render())
             .catch(e => {
