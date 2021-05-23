@@ -277,10 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 ical.value = fullUrl;
                 webcalUrl = new URL(fullUrl)
-                if (fullUrl.protocol === 'https:')
-                    webcalUrl.protocol = 'webcals:'
-                else
-                    webcalUrl.protocol = 'webcal:'
+                webcalUrl.protocol = 'webcal:'
                 addToCalendarButton.href = 
                     `https://www.google.com/calendar/render?cid=${webcalUrl}`;
             })
