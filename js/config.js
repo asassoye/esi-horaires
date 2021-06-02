@@ -251,14 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (item.url === null) {
                             delete item.url
                         }
-                        if (mode == "cours") {
+                        if (mode == "cours" || mode == "rainbow" ) {
                             let parsed = parseDesc(item.description)
                             
                             if (parsed.groupes) {
                                 item.color = hash_color(parsed.groupes[0])
                             }
-                        }
-                        else {
+                        } else {
                             if (item.location !== null 
                                 && item.description.includes("À distance")) {
                                 item.color = "hsl(341, 70%, 59%)";
