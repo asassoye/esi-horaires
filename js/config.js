@@ -123,16 +123,44 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         fixedWeekCount: false,
         showNonCurrentDates: false,
-        eventDidMount: ({event}) => {
-	    let location = event.extendedProps.location;
+        eventSourceSuccess: (array, xhr) => {
+            let fullUrl = xhr.responseURL;
+            ical.value = fullUrl;
+            webcalUrl = new URL(fullUrl)
+            webcalUrl.protocol = 'webcal:'
+            addToCalendarButton.href = 
+                `https://www.google.com/calendar/render?cid=${webcalUrl}`;
+        },
+        eventDataTransform: event => { // raw event data
+            let props = event.extendedProps;
+	    let location = props.location;
             if (location && !event.title.endsWith(location)) {
-                event.setProp(
-                    "title", 
-                    `${event.title} - ${location}`);
+                event.title = `${event.title} - ${location}`;
             }
+
+            if (mode == "cours" || mode == "rainbow" ) {
+                let parsed = parseDesc(props.description)
+                
+                if (parsed.groupes) {
+                    event.color = hash_color(parsed.groupes[0]);
+                }
+            } else {
+                if (props.location !== null 
+                    && props.description?.includes("À distance")) {
+                    event.color = "hsl(341, 70%, 59%)";
+                }
+                if (props.title?.includes("Remédiation")){
+                    event.color = "hsl(71, 70%, 50%)";
+                }
+            }
+
         },
         navLinks: true,
-        eventClick: showCourseInModal
+        eventClick: showCourseInModal,
+        eventSourceFailure: e => {
+            console.error(e.message)
+            $("#errormodal").modal('show');
+        }
     });
     calendar.render();
 
@@ -165,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function changeValue(value, toMode){
         mode = toMode
-        load_ics(calendar, ical, {
+        load_ics(calendar, {
             url: `${value}.ics`,
             event_properties: {
                 color: "hsl(221, 70%, 59%)"
@@ -192,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Load first timetable
      */
     initialTimetable();
-
+    
     function currentlySelectedInput() {
         for (let input of [selectGroup, selectProf, selectLocal]) {
             if (input.selectedIndex > 0) {
@@ -233,57 +261,20 @@ document.addEventListener("DOMContentLoaded", () => {
      * @param {{url: string, event_properties: {color: string}}} ics the ics to add to the calendar
      * @returns {void}
      */
-    function load_ics(calendar, ical, ics) {
-        calendar.removeAllEvents();
+    function load_ics(calendar, ics) {
+        calendar.getEventSources().forEach(source => source.remove());
+
         const fullUrl = new URL(`ical/${prefix}/2020-2021/aout/${ics.url}`, location.origin + location.pathname);
-        fetch(fullUrl)
-            .then(response => {
-                if(! response.ok) {
-                    throw new Error("HTTP error: " + response.status);
-                }
-                return response.text();
-            })
-            .then(response => {
-                calendar.batchRendering(() => {
-                    let fullCalendarEventSource = 
-                        fc_events(response, ics.event_properties);
-                    fullCalendarEventSource.forEach(item => {                        
-                        if (item.url === null) {
-                            delete item.url
-                        }
-                        if (mode == "cours" || mode == "rainbow" ) {
-                            let parsed = parseDesc(item.description)
-                            
-                            if (parsed.groupes) {
-                                item.color = hash_color(parsed.groupes[0])
-                            }
-                        } else {
-                            if (item.location !== null 
-                                && item.description.includes("À distance")) {
-                                item.color = "hsl(341, 70%, 59%)";
-                            }
-                            if (item.title.includes("Remédiation")){
-                                item.color = "hsl(71, 70%, 50%)";                            
-                            }
-                        }
-                    });		    
-                    calendar.addEventSource(fullCalendarEventSource);
-                });
-                Array
-                    .from(document.getElementsByClassName("valid-feedback"))
-                    .forEach(e => {
-                        e.style.display = "none";
-                    });
-                ical.value = fullUrl;
-                webcalUrl = new URL(fullUrl)
-                webcalUrl.protocol = 'webcal:'
-                addToCalendarButton.href = 
-                    `https://www.google.com/calendar/render?cid=${webcalUrl}`;
-            })
-            .then(() => calendar.render())
-            .catch(e => {
-                console.error(e.message)
-                $("#errormodal").modal('show');
+        let source = calendar.addEventSource({
+            url: fullUrl,
+            format: 'ics'
+        });
+
+
+        Array
+            .from(document.getElementsByClassName("valid-feedback"))
+            .forEach(e => {
+                e.style.display = "none";
             });
     }
 
