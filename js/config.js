@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const icalButton = document.getElementById("icalbutton");
     const addToCalendarButton = document.getElementById("addToCalendar");
     const calendar = new FullCalendar.Calendar(calendarEl, {
+        timeZone: "Europe/Brussels",
         initialView: "timeGridWeek",
         weekends: true,
         hiddenDays: [0], // hide Sunday
