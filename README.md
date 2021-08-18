@@ -3,10 +3,9 @@
 
 # Display timetable 
 
-Use [Leonaard project][0] to convert iCalendar ics to [FullCalendar][1] json
-using [ical.js][2] and adapt for display students and teachers timetables. 
+Use [FullCalendar][1] to display students and teachers timetables[^1]. 
 
-![Screenshot of version pre-pre-alpha](screenshot.png)
+![Screenshot of version beta](screenshot.png)
 
 
 # Demo 
@@ -19,7 +18,9 @@ Pull requests and issues are welcome.
 
 To test locally (using `php -S`) :
 
-- `make updateSchedule` grabs a copy of the current schedule.
+- Clone the repo if you haven't done so already
+
+- Grab a copy of the current schedule by downloading the `ical/` directory from [github][5]. A zip file is available via [downgit][4] ; simply unzip it here in the repository.
 
 - `make serve` launches a local webserver, using the local schedule.
 
@@ -32,6 +33,11 @@ Frédéric Servais *srv*
 
 *Fait à l'arrache par Pierre, Nicolas-Némo et Frédéric-Sébastien.*
 
+[^1]: We used to use [Leonaard project][0] (dead link) together with [ical.js][2] to convert iCalendar (ics) to JSON. Nowadays FullCalendar fully supports ics as a [Event Source][3] (still using ical.js).
+
 [0]: https://github.com/leonaard/icalendar2fullcalendar
 [1]: http://fullcalendar.io/
 [2]: https://mozilla-comm.github.io/ical.js/
+[3]: https://fullcalendar.io/docs/icalendar
+[4]: https://downgit.github.io/#/home?url=https://github.com/HEB-ESI/heb-esi.github.io/tree/gh-pages/ical
+[5]: https://github.com/HEB-ESI/heb-esi.github.io/tree/gh-pages/ical
