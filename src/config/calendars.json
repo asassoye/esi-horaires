@@ -1,0 +1,61 @@
+[
+    {
+        "key": "groups",
+        "name": "Groupes",
+        "items": [
+            {
+                "key": "A111",
+                "name": "A111",
+                "calendar": "ical/2021-22/groupes/[A]_[A]_111.ics"
+            },
+            {
+                "key": "A112",
+                "name": "A112",
+                "calendar": "ical/2021-22/groupes/[A]_[A]_112.ics"
+            },
+            {
+                "key": "E21",
+                "name": "E21",
+                "calendar": "ical/2021-22/groupes/[E]_[E]_E21.ics"
+            }
+        ]
+    },
+    {
+        "key": "teachers",
+        "name": "Profs",
+        "items": [
+            {
+                "key": "ABS",
+                "name": "Romain ABSIL",
+                "calendar": "ical/2021-22/profs/ABS_ABSIL_Romain.ics"
+            },
+            {
+                "key": "ARO",
+                "name": "Anne ROUSSEAU",
+                "calendar": "ical/2021-22/profs/ARO_ROUSSEAU_Anne.ics"
+            }
+        ]
+    },
+    {
+        "key": "courses",
+        "name": "Cours",
+        "items": [
+            {
+                "key": "MAT1",
+                "name": "[MAT1] ",
+                "calendar": "ical/2021-22/cours/MAT1.ics"
+            }
+        ]
+    },
+    {
+        "key": "classes",
+        "name": "Locaux",
+        "items": [
+            {
+                "key": "004",
+                "name": "004",
+                "calendar": "ical/2021-22/cours/AGLR4.ics"
+            }
+        ]
+    }
+]

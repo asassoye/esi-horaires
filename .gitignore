@@ -1,2 +1,5 @@
 ical/
 deploy.sh
+dist/
+node_modules/
+.idea/
