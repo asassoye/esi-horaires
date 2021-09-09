@@ -1,0 +1,9 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID;LANGUAGE=fr:Copyright Index-Education - HYPERPLANNING 2021
+METHOD:PUBLISH
+X-CALSTART:20210913T000000Z
+X-CALEND:20211023T000000Z
+X-WR-CALNAME;LANGUAGE=fr:HYP - SEC4B - du 13 septembre au 23 octobre 2021
+X-WR-CALDESC;LANGUAGE=fr:Emploi du temps de SEC4B généré par le logiciel HP (©INDEX ÉDUCATION) le 06 sept. 2021 - Haute Ecole Bruxelles Brabant - ESI - valable sur la période du 13 septembre au 23 octobre 2021 - Semaines : semaine 37 - 42
+END:VCALENDAR
