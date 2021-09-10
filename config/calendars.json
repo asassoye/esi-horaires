@@ -1,0 +1,24 @@
+{
+    "groups": {
+        "name": "Groupes",
+        "key": "groups",
+        "items": {
+            "E21": {
+                "key": "E21",
+                "name": "E21",
+                "calendar": "ical/2021-22/groupes/[E]_[E]_E21.ics"
+            }
+        }
+    },
+    "teachers": {
+        "name": "Profs",
+        "key": "teachers",
+        "items": {
+            "ABS": {
+                "key": "ABS",
+                "name": "Romain ABSIL",
+                "calendar": "ical/2021-22/profs/ABS_ABSIL_Romain.ics"
+            }
+        }
+    }
+}
