@@ -1,20 +1,20 @@
 {
     "name": "esi-horaires",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "repository": "git@git.esi-bru.be:pbt/displaytimetable.git",
     "author": "Pierre BETTENS <pbettens@he2b.be>",
     "contributors": [
         {
-            "name" : "Nicolas RICHARD",
-            "email" : "nrichard@he2b.be"
+            "name": "Nicolas RICHARD",
+            "email": "nrichard@he2b.be"
         },
         {
-            "name" : "Frédéric SERVAIS",
-            "email" : "fservais@he2b.be"
+            "name": "Frédéric SERVAIS",
+            "email": "fservais@he2b.be"
         },
         {
-            "name" : "Andrew SASSOYE",
-            "email" : "andrew@sassoye.be"
+            "name": "Andrew SASSOYE",
+            "email": "andrew@sassoye.be"
         }
     ],
     "license": "MIT",
@@ -57,12 +57,12 @@
         "core-js": "^3.17",
         "css-loader": "^6.2.0",
         "eslint": "^7.32.0",
+        "eslint-cli": "^1.1.1",
         "eslint-config-standard": "^16.0.3",
         "eslint-plugin-import": "^2.24.2",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.1.0",
         "eslint-plugin-react": "^7.25.1",
-        "mini-css-extract-plugin": "^2.2.2",
         "react": "^17.0",
         "react-dom": "^17.0",
         "regenerator": "^0.14.7",
@@ -73,9 +73,5 @@
         "webpack-cli": "^4.8",
         "webpack-dev-server": "^4.2.0",
         "webpack-notifier": "^1.13"
-    },
-    "dependencies": {
-        "eslint-cli": "^1.1.1",
-        "global": "^4.4.0"
     }
 }

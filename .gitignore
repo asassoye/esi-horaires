@@ -5,3 +5,4 @@ node_modules/
 .idea/
 /config/calendars.json
 /config/personnel.json
+yarn-error.log
