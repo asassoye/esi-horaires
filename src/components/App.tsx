@@ -1,14 +1,12 @@
 import FullCalendar, { EventApi, EventClickArg } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import iCalendarPlugin from '@fullcalendar/icalendar'
-import frLocale from '@fullcalendar/core/locales/fr'
 import ResourceSelector from './ResourceSelector'
 import { useEffect, useState } from 'react'
 import Footer from './Footer'
 import CalLink from './CalLink'
 import EventModal from './EventModal'
 import { calendarData } from '../utils/fetchCalendars'
+import defaultCalendarConfig from '../config/defaultCalendarConfig'
+import { CalendarOptions } from '@fullcalendar/core'
 
 interface AppProps {
   data?: calendarData
@@ -26,27 +24,71 @@ const App = (props: AppProps): JSX.Element => {
           ? calendarsData[props.default ?? '']
           : undefined)
   )
+
   const [selectedResource, setSelectedResource] = useState(
     search.has('ressource')
       ? selectedCategory?.items[search.get('ressource') ?? '']
       : undefined
   )
+
   const [selectedEvent, setSelectedEvent] = useState(
     undefined as EventApi | undefined)
 
-  useEffect(() => {
-    const defaultTitle : string = 'ESI Horaires'
+  /**
+   * Definition de l'État qui configure le calendrier
+   */
+  const [calendarConfig, setCalendarConfig] = useState({
+    ...defaultCalendarConfig,
+    eventSources: [
+      {
+        url: selectedResource?.calendar,
+        format: 'ics'
+      }],
+    eventClick: (e: EventClickArg) => {
+      e.jsEvent.preventDefault()
+      setSelectedEvent(e.event)
+    },
+    eventDataTransform: (event) => {
+      const eventProps = event.extendedProps
+      const location = eventProps?.location
+      if (location && !event.title?.endsWith(location)) {
+        event.title = `${event.title} - ${location}`
+      }
 
-    document.title = selectedResource ? `${selectedResource.name} - ${defaultTitle}` : defaultTitle
-  }, [selectedResource])
-
-  const selectEventHandler = (e: EventClickArg) => {
-    e.jsEvent.preventDefault()
-    setSelectedEvent(e.event)
-  }
+      return event
+    }
+  } as CalendarOptions)
 
   /**
-   * Si l'utilisateur retourne à la page précédente, affiche le bon calendrier
+   * Quand l'Utilisateur choisi une nouvelle ressource,
+   * change l'État de configuration du calendrier
+   */
+  useEffect(() => {
+    setCalendarConfig((oldState: CalendarOptions) => {
+      return {
+        ...oldState,
+        eventSources: [
+          {
+            url: selectedResource?.calendar,
+            format: 'ics'
+          }]
+      }
+    })
+  }, [selectedResource])
+
+  /**
+   * Quand l'Utilisateur choisi une ressource, change le titre de l'Onglet
+   */
+  useEffect(() => {
+    const defaultTitle: string = 'ESI Horaires'
+
+    document.title = selectedResource
+      ? `${selectedResource.name} - ${defaultTitle}`
+      : defaultTitle
+  }, [selectedResource])
+
+  /**
+   * Si l'Utilisateur retourne à la page précédente, affiche le bon calendrier
    */
   window.addEventListener('popstate', (e) => {
     setSelectedCategory(e.state.category)
@@ -65,48 +107,7 @@ const App = (props: AppProps): JSX.Element => {
                           setCategory={setSelectedCategory}
                           selected={selectedResource}
                           setSelected={setSelectedResource}/>
-
-        <FullCalendar
-          plugins={[timeGridPlugin, dayGridPlugin, iCalendarPlugin]}
-          initialView={'timeGridWeek'}
-          weekends={true}
-          hiddenDays={[0]}
-          headerToolbar={{
-            start: 'prev today next',
-            center: 'title',
-            end: 'dayGridMonth timeGridWeek timeGridDay'
-          }}
-          slotMinTime={'08:00:00'}
-          slotMaxTime={'22:00:00'}
-          businessHours={{
-            dayOfWeek: [1, 2, 3, 4, 5],
-            startTime: '08:15',
-            endTime: '18:00'
-          }}
-          fixedWeekCount={false}
-          showNonCurrentDates={false}
-          locale={frLocale}
-          events={selectedResource
-            ? {
-                url: selectedResource.calendar,
-                format: 'ics'
-              }
-            : undefined
-          }
-          contentHeight={'75vh'}
-          stickyHeaderDates={true}
-          eventClick={selectEventHandler}
-          eventDataTransform={event => {
-            const eventProps = event.extendedProps
-            const location = eventProps?.location
-            if (location && !event.title?.endsWith(location)) {
-              event.title = `${event.title} - ${location}`
-            }
-
-            return event
-          }}
-        />
-
+        <FullCalendar {...calendarConfig} />
         <CalLink selectedResource={selectedResource}/>
       </main>
 
