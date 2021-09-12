@@ -45,9 +45,11 @@ const ResourceSelector = (props: CalSelectorProps): JSX.Element => {
       <div className="accordion mb-3" id="calSelector">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
-            <button className="accordion-button" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
+            <button
+              className={`accordion-button ${selected ? 'collapsed' : ''}`}
+              type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
               <strong>
                 {selected ? selected.name : 'Parcourir les horaires..'}
               </strong>
