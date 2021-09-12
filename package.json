@@ -62,7 +62,7 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.1.0",
         "eslint-plugin-react": "^7.25.1",
-        "mini-css-extract-plugin": "^2.2.2",
+        "mini-css-extract-plugin": "^2.3.0",
         "react": "^17.0",
         "react-dom": "^17.0",
         "regenerator": "^0.14.7",
