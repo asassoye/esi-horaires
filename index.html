@@ -2,339 +2,38 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Horaires ESI - beta</title>
+    <title>ESI Horaires</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
-    <link rel="stylesheet" href="css/timetable.css" />
-
-    <script src='https://cdn.jsdelivr.net/npm/luxon@1.24.1/build/global/luxon.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js" integrity="sha256-iFbWWsVYU6rIgbq5wJc4mp8zvV3SkqupxgH/7a9PanY=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js" crossorigin="anonymous"></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/luxon@5.9.0/main.global.min.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/locales/fr.js" integrity="sha256-MLMTUNTPWJ7uwwnpSE4g2rNZepJpC/h3vWe3n6m14R0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.9.0/main.global.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-
-    <script src="js/config.js"></script>
-
+          crossorigin="anonymous" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"/>
+    <link href="css/timetable.css" rel="stylesheet"/>
 </head>
-
 <body>
-    <main role="main" class="container mt-5">
-        <img id="logo" src="img/HE2B-Logo-ESI.png" alt="logo ESI" width="200px" />
-        <h1 id="title">
-            Horaires
-        </h1>
-        
-        <div class="card mb-md-5">
-            <div class="card-body">
-                <h5 class="card-title">Selection de l'horaire</h5>
-                <div class="row">
-                    <div class="col-md-3 mb-md-0">
-                        <select id="selectGroup" class="form-control custom-select">
-                            <option disabled selected>Groupe</option>
-                            <optgroup label="Bloc 1">
-
-                                <option value="BLOC_1_Gestion">Bloc 1 Gestion</option>
-                                <option value="BLOC_1_Technique">Bloc 1 Réseaux</option>
-                                <option value="BLOC_1_Technique">Bloc 1 Industrielle</option>
-                            </optgroup>
-                            <optgroup label="Bloc 2">
-                                <option value="BLOC_2_Gestion">Bloc 2 Gestion</option>
-                                <option value="BLOC_2_Reseaux">Bloc 2 Réseaux</option>
-                                <option value="BLOC_2_Industrielle">Bloc 2 Industrielle</option>
-                            </optgroup>
-                            <optgroup label="Bloc 3">
-                                <option value="BLOC_3_Gestion">Bloc 3 Gestion</option>
-                                <option value="BLOC_3_Reseaux">Bloc 3 Réseaux</option>
-                                <option value="BLOC_3_Industrielle">Bloc 3 Industrielle</option>
-
-                            </optgroup>
-                            <optgroup label="Spécialisation sécurité">
-                                <option value="SEC4A">SEC4A</option>
-                                <option value="SEC4B">SEC4B</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="col-md-3 mb-md-0">
-                        <select id="selectProf" class="form-control custom-select">
-                            <option disabled selected>Enseignant</option>
-                            <option value="ABS">ABS</option>
-                            <option value="BEJ">BEJ</option>
-                            <option value="BFE">BFE</option>
-                            <option value="BIS">BIS</option>
-                            <option value="CLG">CLG</option>
-                            <option value="CUV">CUV</option>
-                            <option value="DBO">DBO</option>
-                            <option value="DHA">DHA</option>
-                            <option value="DNA">DNA</option>
-                            <option value="EGR">EGR</option>
-                            <option value="FSA">FSA</option>
-                            <option value="GVH">GVH</option>
-                            <option value="HAL">HAL</option>
-                            <option value="JDS">JDS</option>
-                            <option value="JLC">JLC</option>
-                            <option value="JSS">JSS</option>
-                            <option value="JST">JST</option>
-                            <option value="LBC">LBC</option>
-                            <option value="LMA">LMA</option>
-                            <option value="MAP">MAP</option>
-                            <option value="MBA">MBA</option>
-                            <option value="MCD">MCD</option>
-                            <option value="MHI">MHI</option>
-                            <option value="MWA">MWA</option>
-                            <option value="NDM">NDM</option>
-                            <option value="NRI">NRI</option>
-                            <option value="NVS">NVS</option>
-                            <option value="PBT">PBT</option>
-                            <option value="PHA">PHA</option>
-                            <option value="PMA">PMA</option>
-                            <option value="RMA">RMA</option>
-                            <option value="SDE">SDE</option>
-                            <option value="SDR">SDR</option>
-                            <option value="SRE">SRE</option>
-                            <option value="SRV">SRV</option>
-                            <option value="TNI">TNI</option>
-                            <option value="TSE">TSE</option>
-                            <option value="XPA">XPA</option>
-                            <option value="YVO">YVO</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 mb-md-0">
-                        <select id="selectLocal" class="form-control custom-select">
-                            <option disabled selected>Local</option>
-                            <optgroup label="Rez-de-chaussée">
-                                <option value='003'>L 003</option>
-                                <option value='004'>L 004</option>
-                            </optgroup>
-                            <optgroup label="Étage 1">
-                                <option value='101'>L 101</option>
-                                <option value='102'>L 102</option>
-                                <option value='105'>L 105</option>
-                            </optgroup>
-                            <optgroup label="Étage 2">
-                                <option value='201'>L 201</option>
-                                <option value='202'>L 202</option>
-                                <option value='203'>L 203</option>
-                                <option value='204'>L 204</option>
-                            </optgroup>
-                            <optgroup label="Étage 3">
-                                <option value='301'>L 301</option>
-                                <option value='303'>L 303</option>
-                                <option value='304'>L 304</option>
-                                <option value='305'>L 305</option>
-                            </optgroup>
-                            <optgroup label="Étage 4">
-                                <option value='401'>L 401</option>
-                                <option value='403'>L 403</option>
-                                <option value='404'>L 404</option>
-                                <option value='405'>L 405</option>
-                            </optgroup>
-                            <optgroup label="Étage 5">
-                                <option value='503'>L 503</option>
-                                <option value='504'>L 504</option>
-                                <option value='505'>L 505</option>
-                            </optgroup>
-                            <optgroup label="Étage 6">
-                                <option value='601'>L 601</option>
-                                <option value='602'>L 602</option>
-                                <option value='604'>L 604</option>
-                            </optgroup>
-                        </select>
-                    </div>
+<main id="root" role="main">
+    <div class="container mt-5 text-center">
+        <noscript>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </symbol>
+            </svg>
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                    <strong>JavaScript est requis</strong> pour faire fonctionner la plateforme horaire.
                 </div>
             </div>
-        </div>
-
-        <div id="calendar"></div>
-
-        <!-- Button trigger modal -->
-        <div class="float-lg-right">
-            <button type="button" class="btn btn-secondary" 
-                    data-toggle="modal" data-target="#modalinfo" aria-label="Aide">
-                <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> Aide
-            </button>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modalinfo" tabindex="-1" role="dialog" 
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Aide et <i>tips</i></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-muted">
-                            Version beta
-                        </p>
-                        <p class="lead">
-                            Horaires des étudiants et étudiantes par groupe ainsi que l'horaire
-                            des <i>profs</i> pour le quadrimestre en cours.
-                        </p>
-                        <p>
-                            <i>Tip #1 :</i> il est possible de copier le lien d'un horaire dans son
-                            agenda. Ceci, quel que soit l'outil d'agenda utilisé (<i>poési</i>,
-                            <i>owncloud</i>, <i>gcalendar</i>…) qui supporte le format
-                            <i>ics</i>. Le lien se trouve en bas de page. Si vous
-                            <b>souscrivez</b> à l'agenda (plutôt que d'importer les évènements),
-                            celui-ci sera mis à jour automatiquement.
-                        </p>
-                        <p>
-                            <i>Tip #2 :</i> en cliquant sur un évènement, une
-                            fenêtre modale s'ouvre dans laquelle il est possible
-                            de cliquer sur un <i>prof</i>, un <i>groupe</i>, un
-                            <i>local</i> mais aussi sur un
-                            <strong>cours</strong>… et le planning du cours
-                            apparait ! 
-                        </p>
-
-                        <!--
-                                    <strong>Code jaune (bac 1) / orange (bac 2, 3)</strong> : si vous
-                                    avez cours à distance et un cours à l'école dans la même
-                                    demi-journée, vous pouvez demander un local pour suivre le cours à
-                                    distance auprès de la direction.-->
-                        <p>
-                            <strong class="text-danger">Code rouge</strong> : si vous avez des impossibilités pour
-                        suivre les cours à distance, vous pouvez demander pour venir à
-                        l'école auprès de la direction.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="legende">
-            <span class="local">Sur place</span>    
-            <span class="remediation">Remédiation</span>
-            <!--<span class="deplacement">Déplacement école-domicile</span>-->
-            <span class="distance">À distance</span>
-        </div>
-
-        <div>
-        <label>Lien vers le calendrier</label>
-        <div class="input-group">
-            <input class="form-control" value="" id="ical" readonly>
-            <button id="icalbutton" class="btn btn-dark ml-1" aria-label="Copier le lien">
-                <i class="fa fa-clipboard fa-fw" aria-hidden="true"></i>
-                Copier le lien
-            </button>
-            <a id="addToCalendar" class="btn btn-dark ml-1" href="#" target="_blank" aria-label="Ajouter au calendrier">
-                <i class="fa fa-google fa-fw" aria-hidden="true"></i> Ajouter au calendrier
-            </a>
-
-            <div class="valid-feedback">Le lien a été copié vers votre presse-papier avec success.</div>
-        </div>
-        </div>
-
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">
-                <a href="https://git.esi-bru.be/pbt/displaytimetable" target="_blank">
-                    <i class="fa fa-gitlab" aria-hidden="true"></i> Dépôt <i>gitesi</i>
-                </a>
-                <br />
-                <a href="mailto:esi-horaires@he2b.be?subject=Mail from horaires.esi-bru.be /">
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Contact horaires
-                </a>
-            </p>
-            <p class="text-muted"><i>Fait à l'arrache pour l'ESI par Pierre, Nicolas (<i>Némo</i>) et Frédéric
-                    (<i>Sébastien</i>).</i></p>
-            <p class="text-muted small">
-                <a href="https://git.esi-bru.be/pbt/displaytimetable/-/raw/master/LICENSE" alt="license mit">MIT
-                    licence</a> - 2020-2021
-            </p>
-        </div>
-    </footer>
-    <div class="modal fade"
-	 id="meetmodal"
-	 tabindex="-1"
-	 role="dialog"
-	 aria-labelledby="exampleModalCenterTitle"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered"
-	     role="document">
-	<div class="modal-content">
-	  <div class="modal-header">
-              <h5 class="modal-title">Détails de la séance</h5>
-              <button type="button"
-		      class="close"
-		      data-dismiss="modal"
-		      aria-label="Fermer">
-              <span aria-hidden="true">&times;</span>
-            </button>
-	  </div>
-	  <div class="modal-body">
-              <ul>
-                  <li>
-                      Activité: <span id="aa"></span>
-                  </li>
-                  <li>
-                      Local: <div id="lieux" class="inline"></span>
-                  </li>
-                  <li style="display: none"> <!-- ne pas afficher, pas assez sûr que ce sera bon -->
-                      Lien meet: <a href="#" id="meetlink">aucun lien</a>
-                  </li>
-                  <li>
-                      Prof: <span id="profacro"></span>
-                  </li>
-                  <li>
-                      Groupes: <div id="groupes" class="inline"></div>
-                  </li>
-              </ul>
-	  </div>
-	  <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>
-	  </div>
-	</div>
-      </div>
-    </div>
-
-    <div class="modal fade"
-	 id="errormodal"
-	 tabindex="-1"
-	 role="dialog"
-	 aria-labelledby="exampleModalCenterTitleError"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered"
-	     role="document">
-	<div class="modal-content">
-	  <div class="modal-header">
-              <h5 class="modal-title">Erreur</h5>
-              <button type="button"
-		      class="close"
-		      data-dismiss="modal"
-		      aria-label="Fermer">
-              <span aria-hidden="true">&times;</span>
-            </button>
-	  </div>
-	  <div class="modal-body">
-              L'horaire demandé n'a pas pu être chargé.
-	  </div>
-	  <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fermer">Fermer</button>
-	  </div>
-	</div>
+        </noscript>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
     </div>
+</main>
+<script src="dist/app.js"></script>
 </body>
-
 </html>

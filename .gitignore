@@ -1,2 +1,7 @@
 ical/
 deploy.sh
+dist/
+node_modules/
+.idea/
+/config/calendars.json
+/config/personnel.json

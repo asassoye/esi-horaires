@@ -1,0 +1,81 @@
+{
+    "name": "esi-horaires",
+    "version": "2.0.0",
+    "repository": "git@git.esi-bru.be:pbt/displaytimetable.git",
+    "author": "Pierre BETTENS <pbettens@he2b.be>",
+    "contributors": [
+        {
+            "name" : "Nicolas RICHARD",
+            "email" : "nrichard@he2b.be"
+        },
+        {
+            "name" : "Frédéric SERVAIS",
+            "email" : "fservais@he2b.be"
+        },
+        {
+            "name" : "Andrew SASSOYE",
+            "email" : "andrew@sassoye.be"
+        }
+    ],
+    "license": "MIT",
+    "private": false,
+    "browserslist": [
+        "cover 90% in BE",
+        "not dead"
+    ],
+    "scripts": {
+        "build": "webpack --mode=production --progress",
+        "dev": "webpack --mode=development",
+        "watch": "webpack --mode=development --watch",
+        "lint": "eslint src/**/*.tsx src/**/*.ts --fix",
+        "serve": "webpack serve",
+        "generate:config": "node utils/generate-calendars-json.js > config/calendars.json"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.15.4",
+        "@babel/core": "^7.15.5",
+        "@babel/plugin-transform-runtime": "^7.15.0",
+        "@babel/preset-env": "^7.15",
+        "@babel/preset-react": "^7.14",
+        "@babel/preset-typescript": "^7.15",
+        "@babel/runtime": "^7.15",
+        "@fullcalendar/core": "^5.9.0",
+        "@fullcalendar/daygrid": "^5.9.0",
+        "@fullcalendar/icalendar": "^5.9.0",
+        "@fullcalendar/list": "^5.9.0",
+        "@fullcalendar/react": "^5.9.0",
+        "@fullcalendar/timegrid": "^5.9.0",
+        "@popperjs/core": "^2.10.1",
+        "@types/bootstrap": "^5.1.4",
+        "@types/react": "^17.0",
+        "@types/react-dom": "^17.0",
+        "@typescript-eslint/eslint-plugin": "^4.31.0",
+        "@typescript-eslint/parser": "^4.31.0",
+        "axios": "^0.21.4",
+        "babel-loader": "^8.2.2",
+        "bootstrap": "^5.1.1",
+        "core-js": "^3.17",
+        "css-loader": "^6.2.0",
+        "eslint": "^7.32.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.24.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^5.1.0",
+        "eslint-plugin-react": "^7.25.1",
+        "mini-css-extract-plugin": "^2.2.2",
+        "react": "^17.0",
+        "react-dom": "^17.0",
+        "regenerator": "^0.14.7",
+        "style-loader": "^3.2.1",
+        "ts-loader": "^9.2",
+        "typescript": "^4.3",
+        "webpack": "^5.52",
+        "webpack-cli": "^4.8",
+        "webpack-dev-server": "^4.2.0",
+        "webpack-notifier": "^1.13"
+    },
+    "dependencies": {
+        "eslint-cli": "^1.1.1",
+        "global": "^4.4.0"
+    }
+}
